@@ -1,6 +1,8 @@
-# CI Demo
+# Continuous Integration Demo Starter
 
-Simple example on how to setup a CI pipeline for building and testing a gradle project.
+Simple Java project containing a few unit tests.
+
+This project is the starter for setting-up a CI pipeline for building and testing a gradle project.
 
 
 
