@@ -2,11 +2,20 @@ package fontys.sem3.school.persistence.repository;
 
 import fontys.sem3.school.business.IUserRepository;
 import fontys.sem3.school.domain.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+@Repository
 public class UserRepository implements IUserRepository {
+
+private final List<User> users;
+
+    public UserRepository(List<User> users) {
+        this.users = new ArrayList<>();
+    }
 
     @Override
     public User findbyId(Long id){
@@ -17,24 +26,18 @@ public class UserRepository implements IUserRepository {
         return null;
     }
 
-    @Override
-    public List<User> GetAllUsers(){
-
-        List<User> users = new ArrayList<>(); // Initialize an empty list
-
-        // Add user objects to the list (you can replace this with your actual logic)
-        users.add(new User(1L,"Alec","sola.alec@gmail.com", "123"));
-        users.add(new User(2L, "Juan", "juan@gmail.com", "123"));
-
-
-        return users; // Return the list of users
-
-
-    }
 
     @Override
-    public void AddUser(){
-
-
+    public List<User> GetUser() {
+        return Collections.unmodifiableList(this.users);
     }
+
+
+    public User saveUser(User user){
+        List<User> users = new ArrayList<>();
+        users.add(user);
+        return user;
+    }
+
+
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public interface IUserRepository {
     User findbyId(Long id);
 
-    List<User> GetAllUsers();
+    List<User> GetUser();
 
-    void AddUser();
+    User saveUser(User user);
 }
