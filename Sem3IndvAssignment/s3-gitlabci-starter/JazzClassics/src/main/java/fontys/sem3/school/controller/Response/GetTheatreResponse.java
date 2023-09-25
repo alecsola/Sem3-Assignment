@@ -1,4 +1,6 @@
-package fontys.sem3.school.domain;
+package fontys.sem3.school.controller.Response;
+
+import fontys.sem3.school.domain.Theatre;
 
 import java.util.List;
 

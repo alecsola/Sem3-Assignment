@@ -1,4 +1,4 @@
-package fontys.sem3.school.domain;
+package fontys.sem3.school.controller.Request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateTheatreRequest {
+public class UpdateTheatreRequest {
+    @NotNull
+    private Long TheatreId;
     @NotBlank
     private String Name;
     @NotNull
     private int Seats;
-
 }

@@ -2,7 +2,7 @@ package fontys.sem3.school.business.impl;
 
 import fontys.sem3.school.business.IUserRepository;
 import fontys.sem3.school.business.interfaces.GetUserUseCase;
-import fontys.sem3.school.domain.GetUserResponse;
+import fontys.sem3.school.controller.Response.GetUserResponse;
 import fontys.sem3.school.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

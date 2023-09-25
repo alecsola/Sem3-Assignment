@@ -1,5 +1,6 @@
-package fontys.sem3.school.domain;
+package fontys.sem3.school.controller.Response;
 
+import fontys.sem3.school.domain.User;
 import lombok.Builder;
 import lombok.Data;
 

@@ -1,8 +1,7 @@
 package fontys.sem3.school.business.interfaces;
 
-import fontys.sem3.school.domain.CreateUserRequest;
-import fontys.sem3.school.domain.CreateUserResponse;
+import fontys.sem3.school.domain.User;
 
 public interface CreateUserUseCase {
-    CreateUserResponse createUser (CreateUserRequest request);
+    User createUser (User user);
 }

@@ -5,6 +5,7 @@ import fontys.sem3.school.domain.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
 public class UserRepository implements IUserRepository {
 
 private final List<User> users;
+private User user;
 
     public UserRepository(List<User> users) {
         this.users = new ArrayList<>();
@@ -29,14 +31,15 @@ private final List<User> users;
 
     @Override
     public List<User> GetUser() {
-        return Collections.unmodifiableList(this.users);
+        List<User> testUsers = Arrays.asList(new User(1L,"Alec","sola.alec@gmail.com","12345"));
+        return Collections.unmodifiableList(testUsers);
     }
 
 
-    public User saveUser(User user){
-        List<User> users = new ArrayList<>();
-        users.add(user);
-        return user;
+    public User saveUser(User newuser){
+        // List<User> users = new ArrayList<>();
+        users.add(newuser);
+        return newuser;
     }
 
 
