@@ -1,6 +1,6 @@
 package fontys.sem3.school.business.impl;
 
-import fontys.sem3.school.business.IUserRepository;
+import fontys.sem3.school.business.interfaces.IUserRepository;
 import fontys.sem3.school.business.interfaces.GetUserUseCase;
 import fontys.sem3.school.controller.Response.GetUserResponse;
 import fontys.sem3.school.domain.User;

@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -26,7 +26,7 @@ public class CreateUserUseCaseImplTest {
         //TODO auto-generated
         //Arrange
         UserRepository userRepository =mock(UserRepository.class);
-        User user = new User(1L,"John Doe", "john@example.com", "password");
+        User user = new User(1L,"John Doe", "john@example.com", "123456");
         when(userRepository.saveUser(any())).thenReturn(user);
         CreateUserUseCase sut = new CreateUserUseCaseImpl(userRepository);
         // Act
@@ -43,6 +43,18 @@ public class CreateUserUseCaseImplTest {
     @Test
     public void createUser_shouldNotCreateAUserWhenThePasswordHasOnly2Letters() throws Exception {
         //TODO auto-generated
-        Assertions.fail("Not yet implemented");
+
+        //Arrange
+        UserRepository userRepository =mock(UserRepository.class);
+        User user = new User(1L,"John Doe", "john@example.com", "12");
+        CreateUserUseCase sut = new CreateUserUseCaseImpl(userRepository);
+        // Act
+        when(userRepository.saveUser(any())).thenThrow(new IllegalArgumentException("Password cannot be less than 3 characters or more than 8"));
+
+        // Assert
+        assertThrows(IllegalArgumentException.class, () -> {
+            sut.createUser(user);
+        });
+
     }
 }

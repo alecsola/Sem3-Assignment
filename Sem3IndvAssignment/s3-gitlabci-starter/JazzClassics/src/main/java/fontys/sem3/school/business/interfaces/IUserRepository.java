@@ -1,4 +1,4 @@
-package fontys.sem3.school.business;
+package fontys.sem3.school.business.interfaces;
 
 import fontys.sem3.school.domain.User;
 

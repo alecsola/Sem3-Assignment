@@ -1,9 +1,10 @@
 package fontys.sem3.school.domain;
 
 public class Theatre {
-    private Long TheatreId;
+    private Long Id;
     private String Name;
-    private int Seats;
+    private String Detailes;
+    private int AvailableSeats;
 
 
 }

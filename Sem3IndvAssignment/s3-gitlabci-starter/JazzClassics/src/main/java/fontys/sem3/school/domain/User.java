@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 @Data
 @Builder
@@ -14,6 +15,8 @@ public class User {
 private Long UserId;
 private String Name;
 private String Email;
+private String Username;
 private String Password;
 
 }
+

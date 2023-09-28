@@ -1,6 +1,6 @@
 package fontys.sem3.school.business.impl;
 
-import fontys.sem3.school.business.IUserRepository;
+import fontys.sem3.school.business.interfaces.IUserRepository;
 import fontys.sem3.school.business.interfaces.CreateUserUseCase;
 import fontys.sem3.school.domain.User;
 import lombok.RequiredArgsConstructor;
@@ -26,13 +26,21 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
 
     }
     public User SaveUser(User user){
-        User newuser = User.builder()
-                .UserId(1L)
-                .Name(user.getName())
-                .Email(user.getEmail())
-                .Password(user.getPassword())
-                .build();
-        return userRepository.saveUser(newuser);
+        if (user.getPassword().length() < 8 && user.getPassword().length() >3){
+            User newuser = User.builder()
+                    .UserId(1L)
+                    .Name(user.getName())
+                    .Email(user.getEmail())
+                    .Password(user.getPassword())
+                    .build();
+
+            return userRepository.saveUser(newuser);
+        }
+        else{
+
+            throw new IllegalArgumentException("Password cannot less than 3 characters or more than 8");
+        }
+
 
     }
 }

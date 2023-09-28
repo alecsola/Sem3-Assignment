@@ -29,8 +29,10 @@ public class GetUserResponseImplTest {
         GetUserUseCase sut = new GetUserResponseImpl(userRepository);
 
         //Act
-        GetUserResponse response = sut.GetUser();
+        //
+         GetUserResponse response = sut.GetUser();
         //Assert
+
         assertTrue(response.IsSuccess());
     }
 
