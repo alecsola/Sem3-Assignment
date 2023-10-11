@@ -1,15 +1,11 @@
 package fontys.sem3.school.business.impl;
 
 import fontys.sem3.school.business.interfaces.CreateUserUseCase;
-import fontys.sem3.school.controller.Request.CreateUserRequest;
-import fontys.sem3.school.controller.Response.CreateUserResponse;
 import fontys.sem3.school.domain.User;
 import fontys.sem3.school.persistence.repository.UserRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -23,10 +19,10 @@ public class CreateUserUseCaseImplTest {
      */
     @Test
     public void createUser_shouldCreateAUserSuccessfully() throws Exception {
-        //TODO auto-generated
+
         //Arrange
         UserRepository userRepository =mock(UserRepository.class);
-        User user = new User(1L,"John Doe", "john@example.com", "123456");
+        User user = new User(1L,"John Doe", "john@example.com","solaalec", "123456");
         when(userRepository.saveUser(any())).thenReturn(user);
         CreateUserUseCase sut = new CreateUserUseCaseImpl(userRepository);
         // Act
@@ -46,7 +42,7 @@ public class CreateUserUseCaseImplTest {
 
         //Arrange
         UserRepository userRepository =mock(UserRepository.class);
-        User user = new User(1L,"John Doe", "john@example.com", "12");
+        User user = new User(1L,"John Doe", "john@example.com","solaalec", "12");
         CreateUserUseCase sut = new CreateUserUseCaseImpl(userRepository);
         // Act
         when(userRepository.saveUser(any())).thenThrow(new IllegalArgumentException("Password cannot be less than 3 characters or more than 8"));

@@ -13,7 +13,7 @@ import java.util.List;
 public class UserRepository implements IUserRepository {
 
 private final List<User> users;
-private User user;
+    private static Long NEXT_ID = 1L;
 
     public UserRepository(List<User> users) {
         this.users = new ArrayList<>();
@@ -31,16 +31,23 @@ private User user;
 
     @Override
     public List<User> GetUser() {
-        List<User> testUsers = Arrays.asList(new User(1L,"Alec","sola.alec@gmail.com","12345"));
+        List<User> testUsers = Arrays.asList(new User(1L,"Alec","sola.alec@gmail.com","solaalec","12345"), new User(2L,"Max","maxense.sola@gmail.com","max","123"));
         return Collections.unmodifiableList(testUsers);
     }
 
 
     public User saveUser(User newuser){
-        // List<User> users = new ArrayList<>();
+        newuser.setUserId(NEXT_ID);
+        setNextId(NEXT_ID);
         users.add(newuser);
         return newuser;
     }
-
+    public boolean deleteUser(User user){
+        users.remove(user);
+        return true;
+    }
+    public void setNextId(Long id) {
+        NEXT_ID++;
+    }
 
 }

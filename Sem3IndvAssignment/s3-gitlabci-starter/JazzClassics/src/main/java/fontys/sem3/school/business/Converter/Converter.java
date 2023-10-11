@@ -1,9 +1,8 @@
-package fontys.sem3.school.controller.Converter;
+package fontys.sem3.school.business.Converter;
 
-import fontys.sem3.school.controller.Request.CreateUserRequest;
-import fontys.sem3.school.controller.Response.CreateUserResponse;
+import fontys.sem3.school.business.Request.CreateUserRequest;
+import fontys.sem3.school.business.Response.CreateUserResponse;
 import fontys.sem3.school.domain.User;
-import lombok.Data;
 import org.springframework.stereotype.Component;
 
 
@@ -12,8 +11,9 @@ public class Converter {
 
     public User userRequestConverter(CreateUserRequest request){
         User user = new User();
-        user.setUserId(1L);
+
         user.setName(request.getName());
+        user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
 

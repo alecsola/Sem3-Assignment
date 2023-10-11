@@ -1,4 +1,4 @@
-package fontys.sem3.school.controller.Response;
+package fontys.sem3.school.business.Response;
 
 import fontys.sem3.school.domain.Theatre;
 

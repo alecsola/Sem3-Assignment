@@ -1,7 +1,7 @@
 package fontys.sem3.school.business.impl;
 
 import fontys.sem3.school.business.interfaces.GetUserUseCase;
-import fontys.sem3.school.controller.Response.GetUserResponse;
+import fontys.sem3.school.business.Response.GetUserResponse;
 import fontys.sem3.school.domain.User;
 import fontys.sem3.school.persistence.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ public class GetUserResponseImplTest {
         //TODO auto-generated
         //Arrange
         UserRepository userRepository = mock(UserRepository.class);
-        List<User> testUsers = Arrays.asList(new User(1L,"Alec","sola.alec@gmail.com","12345"));
+        List<User> testUsers = Arrays.asList(new User(1L,"Alec","sola.alec@gmail.com","solaalec","12345"));
         when(userRepository.GetUser()).thenReturn(testUsers);
         GetUserUseCase sut = new GetUserResponseImpl(userRepository);
 

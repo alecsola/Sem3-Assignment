@@ -15,7 +15,12 @@ import java.util.List;
 public class ValidateUserCredentialsImpl implements ValidateUserCredentialsUseCase {
 
     private final IUserRepository userRepository;
-
+    /**
+     *
+     *
+     * @should validate user credentials
+     * @should throw an exception if the validation is incorrect
+     */
 
     //Supposed to validate User Credentials for the Login
     public User ValidateUserCredentials (String username, String password){

@@ -14,8 +14,8 @@ import org.hibernate.validator.constraints.Length;
 public class User {
 private Long UserId;
 private String Name;
-private String Email;
 private String Username;
+private String Email;
 private String Password;
 
 }

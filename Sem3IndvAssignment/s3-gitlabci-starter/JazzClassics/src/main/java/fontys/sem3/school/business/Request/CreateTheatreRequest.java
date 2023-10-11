@@ -1,22 +1,20 @@
-package fontys.sem3.school.controller.Request;
+package fontys.sem3.school.business.Request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateUserRequest {
+public class CreateTheatreRequest {
     @NotBlank
     private String Name;
-    @NotBlank
-    private String Email;
-    @NotBlank
-    @Length(min=3,max=10)
-    private String Password;
+    @NotNull
+    private int Seats;
+
 }

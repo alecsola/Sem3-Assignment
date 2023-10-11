@@ -17,10 +17,10 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
      *
      * @should create a user successfully
      * @should not create a user when the password has only 2 letters.
-     */
+     */              
     public User createUser(User user) {
 
-        User newUser = SaveUser(user);
+                    User newUser = SaveUser(user);
         return User.builder()
                 .UserId(newUser.getUserId()).build();
 
@@ -28,8 +28,9 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
     public User SaveUser(User user){
         if (user.getPassword().length() < 8 && user.getPassword().length() >3){
             User newuser = User.builder()
-                    .UserId(1L)
+
                     .Name(user.getName())
+                    .Username(user.getUsername())
                     .Email(user.getEmail())
                     .Password(user.getPassword())
                     .build();
