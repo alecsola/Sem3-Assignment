@@ -3,7 +3,7 @@ import { GetUserComponent } from '../components/GetUsers';
 import { CreateUserComponent } from '../components/CreateUser';
 
 const UserPage = () => {
-  const [userCreated, setUserCreated] = useState(false);
+  const [userCreated, setUserCreated] = useState();
 
   const handleUserCreated = () => {
     setUserCreated(true);
