@@ -6,7 +6,7 @@ const UserPage = () => {
   const [userCreated, setUserCreated] = useState();
 
   const handleUserCreated = () => {
-    setUserCreated(true);
+    setUserCreated(true);     
   
   };
 
