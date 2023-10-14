@@ -1,0 +1,18 @@
+import axios from "axios";
+
+const hostname = 'http://localhost:8080'
+
+function getAllTodos() {
+    return axios.get(`${hostname}/user`)
+        .then(response => response.data)
+}
+
+function saveTodo(todoItem) {
+    return axios.post(`${hostname}/user`, todoItem)
+        .then(response => response.data)
+}
+
+export default {
+    getAllTodos,
+    saveTodo
+}
