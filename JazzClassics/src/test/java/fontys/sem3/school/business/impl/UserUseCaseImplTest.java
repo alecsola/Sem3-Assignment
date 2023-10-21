@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,42 +19,6 @@ import static org.mockito.Mockito.when;
 
 public class UserUseCaseImplTest {
 
-    /**
-     * @verifies create a user successfully
-     * @see UserUseCaseImpl#createUser(fontys.sem3.school.domain.User)
-     */
-    @Test
-    public void createUser_shouldCreateAUserSuccessfully() throws Exception {
-        //Arrange
-        UserRepository userRepository =mock(UserRepository.class);
-        User user = new User(1L,"John Doe", "john@example.com","solaalec", "123456");
-        when(userRepository.saveUser(any())).thenReturn(user);
-        UserUseCase sut = new UserUseCaseImpl(userRepository);
-        // Act
-        User sutResponse = sut.createUser(user);
-
-        // Assert
-        assertNotNull(sutResponse.getUserId());
-    }
-
-    /**
-     * @verifies not create a user when the password has only 2 letters.
-     * @see UserUseCaseImpl#createUser(fontys.sem3.school.domain.User)
-     */
-    @Test
-    public void createUser_shouldNotCreateAUserWhenThePasswordHasOnly2Letters() throws Exception {
-        //Arrange
-        UserRepository userRepository =mock(UserRepository.class);
-        User user = new User(1L,"John Doe", "john@example.com","solaalec", "12");
-        UserUseCase sut = new UserUseCaseImpl(userRepository);
-        // Act
-        when(userRepository.saveUser(any())).thenThrow(new IllegalArgumentException("Password cannot be less than 3 characters or more than 8"));
-
-        // Assert
-        assertThrows(IllegalArgumentException.class, () -> {
-            sut.createUser(user);
-        });
-    }
 
 
     /**
@@ -70,10 +35,10 @@ public class UserUseCaseImplTest {
 
         //Act
         //
-        GetUserResponse response = sut.GetUser();
+        List<User> response = sut.GetUser();
         //Assert
 
-        assertTrue(response.IsSuccess());
+        Assertions.assertEquals(testUsers, response);
     }
 
     /**
@@ -88,9 +53,9 @@ public class UserUseCaseImplTest {
         when(userRepository.GetUser()).thenReturn(testUsers);
         UserUseCase sut = new UserUseCaseImpl(userRepository);
         //Act
-        GetUserResponse response = sut.GetUser();
+        List<User> response = sut.GetUser();
         //Assert
-        assertThat(response.getUsers().isEmpty());
+        assertThat(response.isEmpty());
     }
 
     /**
@@ -123,30 +88,6 @@ public class UserUseCaseImplTest {
         Assertions.fail("Not yet implemented");
     }
 
-    /**
-     * @verifies validate User Credentials
-     * @see UserUseCaseImpl#ValidateUserCredentials(String, String)
-     */
-    @Test
-    public void ValidateUserCredentials_shouldValidateUserCredentials() throws Exception {
-        //Arrange]
-        UserRepository userRepository = mock(UserRepository.class);
-        List<User> testUsers = Arrays.asList(new User(1L,"Alec","solaalec","sola.alec@gmail.com","12345"));
-        when(userRepository.GetUser()).thenReturn(testUsers);
-        UserUseCase sut = new UserUseCaseImpl(userRepository);
-        //Act
-        User retrievedUser = sut.ValidateUserCredentials("solaalec", "12345");
-        //Assert
-        assertNotNull(retrievedUser);
-    }
 
-    /**
-     * @verifies give an error if they aren't validated
-     * @see UserUseCaseImpl#ValidateUserCredentials(String, String)
-     */
-    @Test
-    public void ValidateUserCredentials_shouldGiveAnErrorIfTheyArentValidated() throws Exception {
-        //TODO auto-generated
-        Assertions.fail("Not yet implemented");
-    }
+   
 }

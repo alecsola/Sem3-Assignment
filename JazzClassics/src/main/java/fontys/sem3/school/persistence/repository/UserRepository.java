@@ -2,6 +2,7 @@ package fontys.sem3.school.persistence.repository;
 
 import fontys.sem3.school.business.interfaces.IUserRepository;
 import fontys.sem3.school.domain.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -10,20 +11,21 @@ import java.util.Collections;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class UserRepository implements IUserRepository {
 
 private final List<User> users;
     private static Long NEXT_ID = 1L;
 
-    public UserRepository(List<User> users) {
-        this.users = new ArrayList<>();
-    }
+
 
     @Override
-    public User findbyId(Long id){
-        User user = new User();
-        if(user.getUserId() == id){
-            return user;
+    public User getUserbyId(Long id){
+
+        for (User user: users){
+            if(user.getUserId().equals(id)){
+                return user;
+            }
         }
         return null;
     }
@@ -31,8 +33,8 @@ private final List<User> users;
 
     @Override
     public List<User> GetUser() {
-        List<User> testUsers = Arrays.asList(new User(1L,"Alec","sola.alec@gmail.com","solaalec","12345"), new User(2L,"Max","maxense.sola@gmail.com","max","123"));
-        return Collections.unmodifiableList(testUsers);
+
+        return Collections.unmodifiableList(users);
     }
 
 

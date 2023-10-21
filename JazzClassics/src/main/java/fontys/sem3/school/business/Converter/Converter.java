@@ -15,7 +15,7 @@ public class Converter {
         user.setName(request.getName());
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
+        user.setHashedPassword(request.getPassword());
 
         return user;
 

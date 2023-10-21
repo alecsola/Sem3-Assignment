@@ -16,7 +16,7 @@ private Long UserId;
 private String Name;
 private String Username;
 private String Email;
-private String Password;
+private String hashedPassword;
 
 }
 

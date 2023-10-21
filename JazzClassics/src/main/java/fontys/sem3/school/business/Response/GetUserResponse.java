@@ -11,7 +11,5 @@ import java.util.List;
 public class GetUserResponse  {
     private List<User> users;
 
-    public boolean IsSuccess(){
-        return true;
-    }
+
 }
