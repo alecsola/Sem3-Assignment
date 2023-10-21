@@ -53,4 +53,6 @@ const GetUserComponent = ({ userCreated }) => {
   );
 };
 
-export { GetUserComponent };
+export { GetUserComponent };`
+
+`
