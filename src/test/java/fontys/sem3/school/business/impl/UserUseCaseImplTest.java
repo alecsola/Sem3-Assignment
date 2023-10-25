@@ -67,7 +67,7 @@ public class UserUseCaseImplTest {
      * @verifies return an exeption if user doesn't exist
      * @see UserUseCaseImpl#updateUser(Long, String, String, String, String)
      */
-   
+
 
 
    

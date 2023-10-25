@@ -69,7 +69,7 @@ public class UserController  {
         CreateUserResponse response = converter.responseConverter(createdUser);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-    @PostMapping("/login")
+    @PostMapping("/loginn")
     public ResponseEntity<User> validateUserCredentials(@RequestBody LoginRequest loginRequest) {
         try {
             User user = authenticationService.validateUserCredentials(loginRequest.getUsername(), loginRequest.getPassword());
