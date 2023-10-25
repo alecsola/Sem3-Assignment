@@ -62,7 +62,7 @@ public class UserController  {
                  @Valid @RequestBody CreateUserRequest createUserRequest) {
         User user = converter.userRequestConverter(createUserRequest);
 
-        // Create the user using the createUserUseCase
+       
         User createdUser = userUseCase.createUser(user);
 
         // Convert the created User into CreateUserResponse
