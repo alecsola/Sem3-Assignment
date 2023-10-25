@@ -9,7 +9,7 @@ public interface UserUseCase {
 
     User createUser (User user);
     boolean deleteUser(User user);
-    User updateUser(Long Id, String Name,String Username,String Email , String Password);
+    User updateUser(Long Id, String Name,String Username,String Email,String Password);
     List<User> GetUser();
     User getUserbyId(Long id);
 

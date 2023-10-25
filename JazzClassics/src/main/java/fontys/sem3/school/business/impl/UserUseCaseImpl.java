@@ -79,7 +79,7 @@ public class UserUseCaseImpl implements UserUseCase {
             user.setName(Name);
             user.setUsername(Username);
             user.setEmail(Email);
-            user.setHashedPassword(hashedPassword);
+
             return user;
         }
         else{

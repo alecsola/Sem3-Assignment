@@ -3,6 +3,7 @@ package fontys.sem3.school.controller;
 import fontys.sem3.school.business.Converter.Converter;
 import fontys.sem3.school.business.Request.CreateUserRequest;
 import fontys.sem3.school.business.Request.LoginRequest;
+import fontys.sem3.school.business.Request.UpdateUserRequest;
 import fontys.sem3.school.business.Response.CreateUserResponse;
 import fontys.sem3.school.business.Response.GetUserResponse;
 import fontys.sem3.school.business.impl.AuthenticationService;
@@ -57,7 +58,6 @@ public class UserController  {
 
 
     @PostMapping
-
     public ResponseEntity<CreateUserResponse> createUser(
                  @Valid @RequestBody CreateUserRequest createUserRequest) {
         User user = converter.userRequestConverter(createUserRequest);
@@ -80,9 +80,8 @@ public class UserController  {
         }
     }
     @PostMapping("/updateUser")
-    public ResponseEntity<CreateUserResponse> updateUser( @Valid @RequestBody CreateUserRequest userRequest) {
-        User user = converter.userRequestConverter(userRequest);
-        User updatedUser = userUseCase.updateUser(user.getUserId(),user.getName(),user.getUsername(),user.getEmail(),user.getHashedPassword());
+    public ResponseEntity<CreateUserResponse> updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
+        User updatedUser = userUseCase.updateUser(updateUserRequest.getId(), updateUserRequest.getName(), updateUserRequest.getUsername(), updateUserRequest.getEmail(), updateUserRequest.getPassword());
         CreateUserResponse response = converter.responseConverter(updatedUser);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
