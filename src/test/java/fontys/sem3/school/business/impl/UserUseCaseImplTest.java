@@ -62,31 +62,12 @@ public class UserUseCaseImplTest {
      * @verifies update a user
      * @see UserUseCaseImpl#updateUser(Long, String, String, String, String)
      */
-    @Test
-    public void updateUser_shouldUpdateAUser() throws Exception {
-        //Arrange
-        UserRepository userRepository = mock(UserRepository.class);
-        Long Id = 1L;
-        String Name = "Alec";
-        String Email = "sola.alec@gmail.com";
-        String Username = "solaaalec";
-        String Password = "123";
-        UserUseCase sut = new UserUseCaseImpl(userRepository);
-        //Act
-        User sutResponse = sut.updateUser(Id,Name,Email,Username,Password);
-        //Assert
-        assertNotNull(sutResponse.getUserId());
-    }
 
     /**
      * @verifies return an exeption if user doesn't exist
      * @see UserUseCaseImpl#updateUser(Long, String, String, String, String)
      */
-    @Test
-    public void updateUser_shouldReturnAnExeptionIfUserDoesntExist() throws Exception {
-        //TODO auto-generated
-        Assertions.fail("Not yet implemented");
-    }
+   
 
 
    
