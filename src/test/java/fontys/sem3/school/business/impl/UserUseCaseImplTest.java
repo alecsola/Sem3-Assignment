@@ -1,18 +1,15 @@
 package fontys.sem3.school.business.impl;
 
-import fontys.sem3.school.business.Response.GetUserResponse;
-import fontys.sem3.school.business.interfaces.UserUseCase;
+import fontys.sem3.school.business.interfaces.User.UserUseCase;
 import fontys.sem3.school.domain.User;
 import fontys.sem3.school.persistence.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

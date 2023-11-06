@@ -1,0 +1,11 @@
+
+h
+java:S3008"RRename this field "NEXT_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(š¹Ðö
+D
+java:S11723")Remove this unused method parameter "id".(šªïÇýÿÿÿÿ
+Q
+java:S26964"6Make the enclosing method "static" or remove this set.(Û©¡²øÿÿÿÿ
+F
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
+H
+java:S1128	"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ

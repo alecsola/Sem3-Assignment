@@ -1,0 +1,5 @@
+
+b	java:S116"MRename this field "Id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´ÕÛ”
+p	java:S116"TRename this field "TheatreId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ÕèÍ8ž¤á¬·1
+q	java:S116"PRename this field "Price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(žôÓ»úÿÿÿÿ8å±ã¬·1
+u	java:S116"YRename this field "AvailableSeats" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùüóØ8É§›Ž·1

@@ -1,13 +1,13 @@
 package fontys.sem3.school.controller;
 
 import fontys.sem3.school.business.Converter.Converter;
-import fontys.sem3.school.business.Request.CreateUserRequest;
+import fontys.sem3.school.business.Request.User.CreateUserRequest;
 import fontys.sem3.school.business.Request.LoginRequest;
-import fontys.sem3.school.business.Request.UpdateUserRequest;
-import fontys.sem3.school.business.Response.CreateUserResponse;
-import fontys.sem3.school.business.Response.GetUserResponse;
+import fontys.sem3.school.business.Request.User.UpdateUserRequest;
+import fontys.sem3.school.business.Response.User.CreateUserResponse;
+
 import fontys.sem3.school.business.impl.AuthenticationService;
-import fontys.sem3.school.business.interfaces.UserUseCase;
+import fontys.sem3.school.business.interfaces.User.UserUseCase;
 import fontys.sem3.school.domain.User;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -16,9 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -36,8 +34,8 @@ public class UserController  {
         System.out.println("Users fetched: " + users); // Add appropriate logging
         return ResponseEntity.ok(users);
     }
-    @GetMapping("getUserbyId")
-    public ResponseEntity<User> getUserbyId(@RequestParam Long id){
+    @GetMapping("{id}")
+    public ResponseEntity<User> getUserbyId(@PathVariable  Long id){
 
         try {
             User user = userUseCase.getUserbyId(id);
@@ -69,7 +67,7 @@ public class UserController  {
         CreateUserResponse response = converter.responseConverter(createdUser);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-    @PostMapping("/loginn")
+    @PostMapping("/login") //mirar aqui a ver lo que dijo bart del eficiencia
     public ResponseEntity<User> validateUserCredentials(@RequestBody LoginRequest loginRequest) {
         try {
             User user = authenticationService.validateUserCredentials(loginRequest.getUsername(), loginRequest.getPassword());

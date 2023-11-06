@@ -1,14 +1,12 @@
 package fontys.sem3.school.business.impl;
 
-import fontys.sem3.school.business.Response.GetUserResponse;
-import fontys.sem3.school.business.interfaces.IUserRepository;
-import fontys.sem3.school.business.interfaces.UserUseCase;
+import fontys.sem3.school.business.interfaces.User.IUserRepository;
+import fontys.sem3.school.business.interfaces.User.UserUseCase;
 import fontys.sem3.school.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,7 +34,7 @@ public class UserUseCaseImpl implements UserUseCase {
             }
         }
 
-        User newUser = new User(user.getUserId(), user.getName(), user.getUsername(), user.getEmail(), hashedPassword);
+        User newUser = new User(user.getId(), user.getName(), user.getUsername(), user.getEmail(), hashedPassword);
         userRepository.saveUser(newUser);
 
         return newUser; // return the created user

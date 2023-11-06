@@ -1,12 +1,10 @@
 package fontys.sem3.school.persistence.repository;
 
-import fontys.sem3.school.business.interfaces.IUserRepository;
+import fontys.sem3.school.business.interfaces.User.IUserRepository;
 import fontys.sem3.school.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,7 +21,7 @@ private final List<User> users;
     public User getUserbyId(Long id){
 
         for (User user: users){
-            if(user.getUserId().equals(id)){
+            if(user.getId().equals(id)){
                 return user;
             }
         }
@@ -39,7 +37,7 @@ private final List<User> users;
 
 
     public User saveUser(User newuser){
-        newuser.setUserId(NEXT_ID);
+        newuser.setId(NEXT_ID);
         setNextId(NEXT_ID);
         users.add(newuser);
         return newuser;

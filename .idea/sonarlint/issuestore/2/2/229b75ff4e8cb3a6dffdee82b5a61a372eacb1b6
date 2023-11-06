@@ -1,0 +1,8 @@
+
+i	java:S116"MRename this field "Id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´ÕÛ”8Ä¹ª·1
+p	java:S116"ORename this field "Name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(É¬­Áøÿÿÿÿ8Ä¹ª·1
+m	java:S116"RRename this field "Country" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(š„’98Ä¹ª·1
+k	java:S116"ORename this field "City" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÑùÛ8Ä¹ª·1
+n	java:S116"RRename this field "Details" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œ°úä8Ä¹ª·1
+t	java:S116"SRename this field "Capacity" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§ÕÒ¥şÿÿÿÿ8Ÿˆºª·1
+v	java:S116"URename this field "Popularity" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞĞ©ùÿÿÿÿ8Ä¹ª·1

@@ -1,7 +1,7 @@
 package fontys.sem3.school.business.Converter;
 
-import fontys.sem3.school.business.Request.CreateUserRequest;
-import fontys.sem3.school.business.Response.CreateUserResponse;
+import fontys.sem3.school.business.Request.User.CreateUserRequest;
+import fontys.sem3.school.business.Response.User.CreateUserResponse;
 import fontys.sem3.school.domain.User;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ public class Converter {
     }
     public CreateUserResponse responseConverter(User user){
         CreateUserResponse response = new CreateUserResponse();
-        response.setUserId(user.getUserId());
+        response.setUserId(user.getId());
         return response;
     }
 }
