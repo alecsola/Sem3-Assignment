@@ -1,14 +1,28 @@
 package fontys.sem3.school.business.Request.Theatre;
 
-import lombok.Data;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import fontys.sem3.school.business.Serializer.MultipartFileDeserializer;
+import fontys.sem3.school.business.Serializer.MultipartFileSerializer;
+import fontys.sem3.school.domain.Image;
+import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
-@Data
+import java.util.List;
+
+@Getter
+@AllArgsConstructor
+@Builder
+@NoArgsConstructor
+//@JsonSerialize(using = MultipartFileSerializer.class)
+//@JsonDeserialize(using = MultipartFileDeserializer.class)
 public class TheatreRequest {
 
-    private String Name;
-    private String Country;
-    private String City;
-    private String Details;
-    private int Capacity;
-    private int Popularity;
+    private String name;
+    private List<MultipartFile> image;
+    private String country;
+    private String city;
+    private String details;
+    private int capacity;
+    private int popularity;
 }

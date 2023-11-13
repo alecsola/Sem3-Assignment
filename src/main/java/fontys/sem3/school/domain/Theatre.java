@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -17,7 +19,7 @@ public class Theatre {
 
     private Long Id;
     private String Name;
-    private String Image;
+    private List<Image> Image;
     private String Country;
     private String City;
     private String Details;

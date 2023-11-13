@@ -1,6 +1,5 @@
 package fontys.sem3.school.persistence.JPAmappers;
 
-import fontys.sem3.school.business.interfaces.TheatreService;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,13 +11,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "files")
+@Table(name = "image")
 public class ImageJPAmapper {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "file_url")
-    private String fileUrl;
+    @Column(name = "url")
+    private String Url;
     @Column (name = "type")
     private String type;
     @ManyToOne

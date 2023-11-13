@@ -7,8 +7,8 @@ import java.util.Optional;
 @Data
 public class FilterTheatreRequest {
 
-    private Optional<String> name;
-    private Optional<String> country;
-    private Optional<String> city;
-    private Optional<Integer> seatCapacity;
+    private String name;
+    private String country;
+    private String city;
+
 }

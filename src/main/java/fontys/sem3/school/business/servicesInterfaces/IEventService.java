@@ -1,4 +1,4 @@
-package fontys.sem3.school.business.interfaces;
+package fontys.sem3.school.business.servicesInterfaces;
 
 import fontys.sem3.school.domain.Event;
 import fontys.sem3.school.domain.Zone;
@@ -6,8 +6,7 @@ import fontys.sem3.school.domain.Zone;
 import java.util.Date;
 import java.util.List;
 
-public interface IEventRepository {
-
+public interface IEventService {
     Event createEvent(Event event);
     boolean deleteEvent (Event event);
     Event getEventbyId(Long Id);

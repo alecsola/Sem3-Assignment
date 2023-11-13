@@ -24,7 +24,7 @@ public class EventJPAmapper {
     private String Name;
     private Long theatreId;
     private Date date;
-    private List<Zone> zones;//supongo que esto sera el numero de zonas que tiene.
+    //private String zones;
     private int Completed;
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ImageJPAmapper> image;

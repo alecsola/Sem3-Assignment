@@ -22,7 +22,7 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-web")
     implementation ("org.springframework.boot:spring-boot-starter-validation")
     implementation ("org.springframework.security:spring-security-crypto:5.5.0")
-    implementation ("org.flywaydb:flyway-mysql")
+    //implementation ("org.flywaydb:flyway-mysql")
     implementation ("mysql:mysql-connector-java:8.0.33")
     implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation ("mysql:mysql-connector-java")
