@@ -26,24 +26,24 @@ public class LogInServiceTest {
     @Test
     @Transactional
     public void login_shouldReturnAccessToken() throws Exception {
-        UserRepository repository = mock(UserRepository.class);
-        PasswordEncoder passwordEncoder = mock(PasswordEncoder.class);
-        AccessTokenEncoder accessTokenEncoder = mock(AccessTokenEncoder.class);
-        LogInService service = mock(LogInService.class);
-        LoginResponse mockedLoginResponse = LoginResponse.builder().accessToken("mockedAccessToken").build();
+//        UserRepository repository = mock(UserRepository.class);
+//        PasswordEncoder passwordEncoder = mock(PasswordEncoder.class);
+//        AccessTokenEncoder accessTokenEncoder = mock(AccessTokenEncoder.class);
+//        LogInService service = mock(LogInService.class);
+//        LoginResponse mockedLoginResponse = LoginResponse.builder().accessToken("mockedAccessToken").build();
+//
+//        Mockito.when(service.login(Mockito.any(LoginRequest.class))).thenReturn(mockedLoginResponse);
+//        ILoginService sut = new LogInService(repository,passwordEncoder,accessTokenEncoder);
+//
+//        //act
+//        LoginRequest request = new LoginRequest();
+//        request.setUsername("solaalec");
+//        request.setPassword("123456");
+//        LoginResponse sutResponse = sut.login(request);
+//        //arrange
+//        assertEquals("mockedAccessToken", sutResponse.getAccessToken());
 
-        Mockito.when(service.login(Mockito.any(LoginRequest.class))).thenReturn(mockedLoginResponse);
-        ILoginService sut = new LogInService(repository,passwordEncoder,accessTokenEncoder);
-
-        //act
-        LoginRequest request = new LoginRequest();
-        request.setUsername("solaalec");
-        request.setPassword("123456");
-        LoginResponse sutResponse = sut.login(request);
-        //arrange
-        assertEquals("mockedAccessToken", sutResponse.getAccessToken());
-
-
+        Assertions.fail("Not yet implemented");
     }
 
     /**
