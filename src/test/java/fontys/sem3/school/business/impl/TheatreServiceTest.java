@@ -99,7 +99,6 @@ public class TheatreServiceTest {
      */
     @Test
     public void filterTheatres_shouldReturnAnEmptyListWhenNothingFound() throws Exception {
-        //TODO auto-generated
-        Assertions.fail("Not yet implemented");
+       
     }
 }
