@@ -1,15 +1,30 @@
 package fontys.sem3.school.persistence.JPAmappers;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.*;
 
+import java.util.List;
+import java.util.Set;
+
+@Entity
+@Table(name = "user")
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserJPAmapper {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
-    private String Name;
-    private String Username;
-    private String Email;
-    private String hashedPassword;
+    private Long id;
+    private String name;
+    private String username;
+    private String email;
+    @Setter
+    private String password;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private Set<RoleJPAmapper> roles;
+
+
 }

@@ -1,51 +1,58 @@
 package fontys.sem3.school.persistence.repository;
 
-import fontys.sem3.school.business.interfaces.User.IUserRepository;
+import fontys.sem3.school.business.interfaces.User.IUserRepositoryBusiness;
 import fontys.sem3.school.domain.User;
+import fontys.sem3.school.persistence.IUserRepository;
+import fontys.sem3.school.persistence.JPAmappers.UserJPAmapper;
+import fontys.sem3.school.persistence.converters.UserConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class UserRepository implements IUserRepository {
+public class UserRepository implements IUserRepositoryBusiness {
 
-private final List<User> users;
+    private final List<User> users;
+    private final PasswordEncoder passwordEncoder;
+    private final IUserRepository userRepository;
     private static Long NEXT_ID = 1L;
 
+    @Transactional
+    public Long saveNewUser(User user) {
+        UserJPAmapper userJPAmapper = UserConverter.userConverter(user);
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        userJPAmapper.setPassword(encodedPassword);
+        return userRepository.save(userJPAmapper).getId();
 
-
-    @Override
-    public User getUserbyId(Long id){
-
-        for (User user: users){
-            if(user.getId().equals(id)){
+    }
+    @Transactional
+    public User findUserbyUsername(String username){
+        UserJPAmapper userJPA = userRepository.findByUsername(username);
+        User user = UserConverter.userJPAmapperConverter(userJPA);
+        return user;
+    }
+    public User getUser(Long id){
+            List<UserJPAmapper> userJPAs = userRepository.findAll();
+        for(UserJPAmapper userJPA:userJPAs){
+            if(userJPA.getId().equals(id)){
+                User user = UserConverter.userJPAmapperConverter(userJPA);
                 return user;
             }
         }
+
         return null;
     }
-
-
-    @Override
-    public List<User> GetUser() {
-
-        return Collections.unmodifiableList(users);
+    public User findUserbyUsernameWithRoles(String username){
+        UserJPAmapper userJPA = userRepository.findUserbyUsernameWithRoles(username);
+        User user = UserConverter.userJPAmapperConverter(userJPA);
+        return user;
     }
 
 
-    public User saveUser(User newuser){
-        newuser.setId(NEXT_ID);
-        setNextId(NEXT_ID);
-        users.add(newuser);
-        return newuser;
-    }
-    public boolean deleteUser(User user){
-        users.remove(user);
-        return true;
-    }
     public void setNextId(Long id) {
         NEXT_ID++;
     }

@@ -2,8 +2,7 @@ package fontys.sem3.school.business.Request.Theatre;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import fontys.sem3.school.business.Serializer.MultipartFileDeserializer;
-import fontys.sem3.school.business.Serializer.MultipartFileSerializer;
+
 import fontys.sem3.school.domain.Image;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;

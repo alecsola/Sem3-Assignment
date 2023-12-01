@@ -1,22 +1,18 @@
 package fontys.sem3.school.controller;
 
 import fontys.sem3.school.business.Converter.Converter;
-import fontys.sem3.school.business.Request.User.CreateUserRequest;
 import fontys.sem3.school.business.Request.LoginRequest;
-import fontys.sem3.school.business.Request.User.UpdateUserRequest;
-import fontys.sem3.school.business.Response.User.CreateUserResponse;
+import fontys.sem3.school.business.Request.User.CreateUserRequest;
 
-import fontys.sem3.school.business.impl.AuthenticationService;
-import fontys.sem3.school.business.interfaces.User.UserUseCase;
+import fontys.sem3.school.business.Response.User.GetUserResponse;
+import fontys.sem3.school.business.Response.User.LoginResponse;
+import fontys.sem3.school.business.interfaces.User.IUserService;
 import fontys.sem3.school.domain.User;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -24,64 +20,19 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:5173")
 public class UserController  {
     private final Converter converter;
-    private final UserUseCase userUseCase;
-    private final AuthenticationService authenticationService;
+    private final IUserService userService;
 
-    @GetMapping
-    public ResponseEntity<List<User>> getUser(){
 
-        List<User> users = userUseCase.GetUser();
-        System.out.println("Users fetched: " + users); // Add appropriate logging
-        return ResponseEntity.ok(users);
+    @PostMapping()
+    public long createUser(@RequestBody @Valid CreateUserRequest userRequest){
+        return userService.saveNewUser(userRequest);
     }
-    @GetMapping("{id}")
-    public ResponseEntity<User> getUserbyId(@PathVariable  Long id){
-
-        try {
-            User user = userUseCase.getUserbyId(id);
-            if (user != null) {
-                System.out.println("User retrieved: " + user);
-                return ResponseEntity.ok(user);
-            } else {
-                System.out.println("User not found for id: " + id);
-                return ResponseEntity.notFound().build();
-            }
-        } catch (Exception e) {
-            System.err.println("Error retrieving user for id " + id + ": " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    @GetMapping("/get")
+    public GetUserResponse getUser(@RequestParam Long id){
+        return userService.getUser(id);
     }
 
 
 
-
-    @PostMapping
-    public ResponseEntity<CreateUserResponse> createUser(
-                 @Valid @RequestBody CreateUserRequest createUserRequest) {
-        User user = converter.userRequestConverter(createUserRequest);
-
-       
-        User createdUser = userUseCase.createUser(user);
-
-        // Convert the created User into CreateUserResponse
-        CreateUserResponse response = converter.responseConverter(createdUser);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
-    @PostMapping("/login") //mirar aqui a ver lo que dijo bart del eficiencia
-    public ResponseEntity<User> validateUserCredentials(@RequestBody LoginRequest loginRequest) {
-        try {
-            User user = authenticationService.validateUserCredentials(loginRequest.getUsername(), loginRequest.getPassword());
-            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(user);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).contentType(MediaType.APPLICATION_JSON)
-                    .body(null); // Or handle the error response accordingly
-        }
-    }
-    @PostMapping("/updateUser")
-    public ResponseEntity<CreateUserResponse> updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
-        User updatedUser = userUseCase.updateUser(updateUserRequest.getId(), updateUserRequest.getName(), updateUserRequest.getUsername(), updateUserRequest.getEmail(), updateUserRequest.getPassword());
-        CreateUserResponse response = converter.responseConverter(updatedUser);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
 
 }

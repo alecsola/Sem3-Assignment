@@ -1,6 +1,6 @@
-package fontys.sem3.school.business.Response.User;
+package fontys.sem3.school.domain;
 
-import fontys.sem3.school.domain.User;
+import fontys.sem3.school.persistence.JPAmappers.RolesEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +10,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetUserResponse {
+
+public class Role {
+
+    private Long Id;
+    private RolesEnum Type;
     private User user;
+
 }

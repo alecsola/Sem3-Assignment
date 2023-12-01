@@ -2,11 +2,10 @@ package fontys.sem3.school.business.Converter;
 
 import fontys.sem3.school.business.Request.Theatre.TheatreRequest;
 import fontys.sem3.school.business.Response.Theatre.TheatreResponse;
-import fontys.sem3.school.domain.Image;
+
 import fontys.sem3.school.domain.Theatre;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 
 @Component
 public class TheatreConverter {

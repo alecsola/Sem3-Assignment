@@ -13,6 +13,5 @@ public class CreateUserRequest {
 
     private String email;
 
-    @Length(min=3, max=10)
     private String password;
 }

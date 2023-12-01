@@ -37,11 +37,8 @@ public class TheatreRepository implements ITheatreRepositoryBusiness {
     }
     @Transactional
     public List<Theatre> filterTheatres(String name, String city, String country) {
-        String sql = "SELECT t.name, t.country, t.city FROM theatre t " +
-                "WHERE (? IS NULL OR t.name = ?) AND (? IS NULL OR t.city = ?) AND (? IS NULL OR t.country = ?)";
-
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Theatre.class),
-                name, name, city, city, country, country);
+        List<TheatreJPAmapper> theatreJPAmappers = repository.findTheatresByFilter(name,city,country);
+        return TheatreConverter.convertTheatre(theatreJPAmappers);
     }
 
 

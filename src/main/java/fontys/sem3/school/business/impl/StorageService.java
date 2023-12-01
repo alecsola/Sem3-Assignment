@@ -1,6 +1,6 @@
 package fontys.sem3.school.business.impl;
 
-import fontys.sem3.school.persistence.ImageStorageProperties;
+import fontys.sem3.school.persistence.config.ImageStorageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,7 +18,13 @@ public class StorageService {
     @Autowired
     public StorageService(ImageStorageProperties imageStorageProperties){
         this.imageStorageProperties= imageStorageProperties;
+
     }
+
+    /**
+     * @should store a multipart file in the database
+     * @should return an error when not returning access token
+     */
 
     public void store(MultipartFile file, Long theatreId) {
         try {
