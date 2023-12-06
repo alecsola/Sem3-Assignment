@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CreateUserRequest {
 
     private String name;

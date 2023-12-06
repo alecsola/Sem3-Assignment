@@ -99,6 +99,6 @@ public class TheatreServiceTest {
      */
     @Test
     public void filterTheatres_shouldReturnAnEmptyListWhenNothingFound() throws Exception {
-       
+
     }
 }
