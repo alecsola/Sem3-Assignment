@@ -31,7 +31,9 @@ public class LogInService implements ILoginService {
      */
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
+        System.out.println("Username in LoginRequest: " + loginRequest.getUsername());
         User user = userRepository.findUserbyUsername(loginRequest.getUsername());
+        System.out.println("Username in User: " + user.getUsername());
         if (user == null) {
             throw new IllegalArgumentException("User does not exist");
         }
@@ -41,6 +43,7 @@ public class LogInService implements ILoginService {
         }
 
         String accessToken = generateAccessToken(user);
+
         return LoginResponse.builder().accessToken(accessToken).build();
     }
 

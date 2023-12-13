@@ -23,6 +23,9 @@ public class UserRepository implements IUserRepositoryBusiness {
 
     @Transactional
     public Long saveNewUser(User user) {
+        if (user.getPassword().length() < 4) {
+            throw new IllegalArgumentException("Password is too short");
+        }
         UserJPAmapper userJPAmapper = UserConverter.userConverter(user);
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         userJPAmapper.setPassword(encodedPassword);

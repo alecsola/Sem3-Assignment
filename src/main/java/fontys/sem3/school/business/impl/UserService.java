@@ -18,15 +18,20 @@ public class UserService implements IUserService {
 
 
     private final IUserRepositoryBusiness userRepository;
-    private final PasswordEncoder passwordEncoder;
+
     /**
      * @should save a user and return id
      * @should return an error when it cant be created
      */
     public Long saveNewUser(CreateUserRequest request) {
+        if (request.getPassword().length() < 4) {
+            throw new IllegalArgumentException("Password is too short");
+        }
         User user = Converter.userRequestConverter(request);
         long result = userRepository.saveNewUser(user);
-
+        if(result==0){
+            return -1L;
+        }
         return new CreateUserResponse(result).getId();
     }
     /**

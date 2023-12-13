@@ -84,21 +84,5 @@ public class TheatreServiceTest {
         Mockito.verify(storage, Mockito.times(1)).store(Mockito.any(MultipartFile.class), Mockito.eq(1L));
     }
 
-    /**
-     * @verifies filter theatre with name,city and country
-     * @see TheatreService#filterTheatres(String, String, String)
-     */
-    @Test
-    public void filterTheatres_shouldFilterTheatreWithNamecityAndCountry() throws Exception {
 
-    }
-
-    /**
-     * @verifies return an empty list when nothing found
-     * @see TheatreService#filterTheatres(String, String, String)
-     */
-    @Test
-    public void filterTheatres_shouldReturnAnEmptyListWhenNothingFound() throws Exception {
-
-    }
 }

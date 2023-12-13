@@ -1,6 +1,7 @@
 package fontys.sem3.school.persistence.JPAmappers;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class UserJPAmapper {
     private String username;
     private String email;
     @Setter
-    private String password;
+    @Size(min = 6) private String password;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private Set<RoleJPAmapper> roles;

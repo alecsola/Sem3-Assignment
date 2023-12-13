@@ -1,6 +1,7 @@
 package fontys.sem3.school.business.impl;
 
 import fontys.sem3.school.business.Request.User.CreateUserRequest;
+import fontys.sem3.school.business.interfaces.User.IUserRepositoryBusiness;
 import fontys.sem3.school.domain.User;
 import fontys.sem3.school.persistence.AccessTokenEncoder;
 import fontys.sem3.school.persistence.repository.UserRepository;
@@ -10,10 +11,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -24,15 +26,17 @@ public class UserServiceTest {
      * @see UserService#saveNewUser(fontys.sem3.school.business.Request.User.CreateUserRequest)
      */
     @Test
+    @Transactional
     public void saveNewUser_shouldSaveAUserAndReturnId() throws Exception {
-// Arrange
-        UserRepository repository = mock(UserRepository.class);
+        // Arrange
+        IUserRepositoryBusiness repository = mock(IUserRepositoryBusiness.class);
+        UserRepository userRepository = mock(UserRepository.class);
         PasswordEncoder passwordEncoder = mock(PasswordEncoder.class);
-        AccessTokenEncoder accessTokenEncoder = mock(AccessTokenEncoder.class);
-        UserService userService = mock(UserService.class);
-        CreateUserRequest createUserRequest = new CreateUserRequest("Alec","TestTest","Test@gmail.com","123456");
 
+        UserService userService = new UserService(repository);
+        CreateUserRequest createUserRequest = new CreateUserRequest("Alec", "TestTest", "Test@gmail.com", "123456");
         Mockito.when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
+        Mockito.when(userRepository.saveNewUser(Mockito.any(User.class))).thenReturn(1L);
         Mockito.when(repository.saveNewUser(Mockito.any(User.class))).thenReturn(1L);
 
         // Act
@@ -40,9 +44,7 @@ public class UserServiceTest {
 
         // Assert
         assertEquals(1L, result);
-        Mockito.verify(repository, Mockito.times(1)).saveNewUser(Mockito.any(User.class));
 
-        Mockito.verify(passwordEncoder, times(1)).encode(anyString());
     }
 
 
@@ -53,25 +55,29 @@ public class UserServiceTest {
      * @see UserService#saveNewUser(fontys.sem3.school.business.Request.User.CreateUserRequest)
      */
     @Test
+    @Transactional
     public void saveNewUser_shouldReturnAnErrorWhenItCantBeCreated() throws Exception {
+        // Arrange
+        IUserRepositoryBusiness repository = mock(IUserRepositoryBusiness.class);
+        UserRepository userRepository = mock(UserRepository.class);
+        PasswordEncoder passwordEncoder = mock(PasswordEncoder.class);
+
+        UserService userService = new UserService(repository);
+        CreateUserRequest createUserRequest = new CreateUserRequest("Alec", "TestTest", "Test@gmail.com", "123");
+        Mockito.when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
+        Mockito.when(userRepository.saveNewUser(Mockito.any(User.class))).thenReturn(1L);
+        Mockito.when(repository.saveNewUser(Mockito.any(User.class))).thenReturn(1L);
+
+
+        // Act and Assert
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            userService.saveNewUser(createUserRequest);
+        });
+
+        // Verify the exception message
+        assertEquals("Password is too short", exception.getMessage());
 
     }
 
-    /**
-     * @verifies get a user by id
-     * @see UserService#getUser(long)
-     */
-    @Test
-    public void getUser_shouldGetAUserById() throws Exception {
 
-    }
-
-    /**
-     * @verifies return an error user is not found
-     * @see UserService#getUser(long)
-     */
-    @Test
-    public void getUser_shouldReturnAnErrorUserIsNotFound() throws Exception {
-
-    }
 }
