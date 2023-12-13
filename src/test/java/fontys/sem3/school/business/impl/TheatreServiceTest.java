@@ -1,11 +1,11 @@
 package fontys.sem3.school.business.impl;
 
 import fontys.sem3.school.business.Request.Theatre.TheatreRequest;
+import fontys.sem3.school.business.impl.Customer.TheatreService;
 import fontys.sem3.school.business.servicesInterfaces.ITheatreService;
 import fontys.sem3.school.domain.Theatre;
 import fontys.sem3.school.persistence.repository.TheatreRepository;
 import jakarta.transaction.Transactional;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

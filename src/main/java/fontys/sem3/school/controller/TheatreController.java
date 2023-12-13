@@ -6,6 +6,7 @@ import fontys.sem3.school.business.Request.Theatre.TheatreRequest;
 import fontys.sem3.school.business.Response.Theatre.GetTheatreResponse;
 import fontys.sem3.school.business.Response.Theatre.TheatreResponse;
 import fontys.sem3.school.business.servicesInterfaces.ITheatreService;
+import fontys.sem3.school.business.servicesInterfaces.ITheatreServiceADMIN;
 import fontys.sem3.school.domain.Theatre;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -22,13 +23,19 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:5173")
 public class TheatreController {
 
-    private final TheatreConverter converter;
+
     private final ITheatreService theatreService;
+    private final ITheatreServiceADMIN theatreServiceADMIN;
     @PostMapping("")
     public long createTheatre(@RequestParam("name") String name, @RequestParam("image") List<MultipartFile> image,@RequestParam("country") String country,  @RequestParam("city") String city, @RequestParam("details") String details, @RequestParam("capacity") int capacity,@RequestParam ("popularity") int popularity) {
         TheatreRequest request = new TheatreRequest(name, image, country, city, details, capacity, popularity);
         return theatreService.createTheatre(request);
     }
+//    @PostMapping("")
+//    public long createTheatre(@RequestParam("name") String name, @RequestParam("image") List<MultipartFile> image,@RequestParam("country") String country,  @RequestParam("city") String city, @RequestParam("details") String details, @RequestParam("capacity") int capacity,@RequestParam ("popularity") int popularity) {
+//        TheatreRequest request = new TheatreRequest(name, image, country, city, details, capacity, popularity);
+//        return theatreServiceADMIN.createTheatre(request);
+//    }
     @GetMapping("/filter")
     public GetTheatreResponse filterTheatres(
             @RequestParam(required = false) String name,
