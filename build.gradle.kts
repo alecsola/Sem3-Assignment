@@ -50,6 +50,6 @@ tasks.named("test").configure {
     finalizedBy("jacocoTestReport")
 }
 
-tasks.named("sonarqube").configure {
+tasks.named("sonar").configure {
     dependsOn("test")
 }
