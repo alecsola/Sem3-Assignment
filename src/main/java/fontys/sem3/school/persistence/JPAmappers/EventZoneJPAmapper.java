@@ -1,5 +1,6 @@
 package fontys.sem3.school.persistence.JPAmappers;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,19 +8,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "zone")
+@Table(name = "EventZone")
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class ZoneJPAmapper {
+public class EventZoneJPAmapper {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
-    private int Price;
-    private int AvailableSeats;
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name = "event_id")
     private EventJPAmapper event;
+
+    @ManyToOne
+    @JoinColumn(name = "zone_id")
+    private ZoneJPAmapper zone;
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -17,9 +18,10 @@ import java.util.List;
 public class Event {
     private Long Id;
     private String Name;
-    private Long theatreId;
+    private long theatreId;
     private Date date;
-    private List<Zone> zones;//supongo que esto sera el numero de zonas que tiene.
+    private Time time;
+    private List<Zone> zones;
+    private List<Image> image;
     private int Completed;
-    private String Image;
 }

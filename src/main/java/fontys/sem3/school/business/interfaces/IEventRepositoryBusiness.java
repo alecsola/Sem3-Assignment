@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IEventRepositoryBusiness {
-    long save(Event event);
 
+    long createEvent(Event event);
 }

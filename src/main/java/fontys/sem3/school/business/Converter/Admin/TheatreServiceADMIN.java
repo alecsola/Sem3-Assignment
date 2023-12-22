@@ -1,4 +1,4 @@
-package fontys.sem3.school.business.impl.Admin;
+package fontys.sem3.school.business.Converter.Admin;
 
 import fontys.sem3.school.business.Converter.ImageConverter;
 import fontys.sem3.school.business.Request.Theatre.TheatreRequest;
@@ -9,7 +9,9 @@ import fontys.sem3.school.business.servicesInterfaces.ITheatreService;
 import fontys.sem3.school.business.servicesInterfaces.ITheatreServiceADMIN;
 import fontys.sem3.school.domain.Image;
 import fontys.sem3.school.domain.Theatre;
+import jakarta.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,6 +27,7 @@ public class TheatreServiceADMIN implements ITheatreServiceADMIN {
      * @should creatre theatre
      * @should return an error when not creating
      */
+    @RolesAllowed("ADMIN")
     public long createTheatre(TheatreRequest request) {
         try {
             Theatre theatre = new Theatre();

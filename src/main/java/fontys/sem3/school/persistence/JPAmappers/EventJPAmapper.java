@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,9 @@ public class EventJPAmapper {
     private String Name;
     private Long theatreId;
     private Date date;
-    //private String zones;
+    private Time time;
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ZoneJPAmapper> zone;
     private int Completed;
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ImageJPAmapper> image;

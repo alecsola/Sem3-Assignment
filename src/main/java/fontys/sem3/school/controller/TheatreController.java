@@ -8,6 +8,7 @@ import fontys.sem3.school.business.Response.Theatre.TheatreResponse;
 import fontys.sem3.school.business.servicesInterfaces.ITheatreService;
 import fontys.sem3.school.business.servicesInterfaces.ITheatreServiceADMIN;
 import fontys.sem3.school.domain.Theatre;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,9 @@ public class TheatreController {
 
     private final ITheatreService theatreService;
     private final ITheatreServiceADMIN theatreServiceADMIN;
+
     @PostMapping("")
+    @RolesAllowed("ADMIN")
     public long createTheatre(@RequestParam("name") String name, @RequestParam("image") List<MultipartFile> image,@RequestParam("country") String country,  @RequestParam("city") String city, @RequestParam("details") String details, @RequestParam("capacity") int capacity,@RequestParam ("popularity") int popularity) {
         TheatreRequest request = new TheatreRequest(name, image, country, city, details, capacity, popularity);
         return theatreService.createTheatre(request);

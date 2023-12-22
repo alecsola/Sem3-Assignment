@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class ImageConverter {
+public class  ImageConverter {
 
     public static List<Image> convertToImageObject(List<MultipartFile> multipartFiles) {
         if (multipartFiles == null) {

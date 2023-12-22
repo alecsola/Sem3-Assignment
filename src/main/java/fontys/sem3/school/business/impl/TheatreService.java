@@ -1,4 +1,4 @@
-package fontys.sem3.school.business.impl.Customer;
+package fontys.sem3.school.business.impl;
 
 import fontys.sem3.school.business.Converter.ImageConverter;
 import fontys.sem3.school.business.Request.Theatre.TheatreRequest;
@@ -9,6 +9,7 @@ import fontys.sem3.school.business.interfaces.ITheatreRepositoryBusiness;
 import fontys.sem3.school.business.servicesInterfaces.ITheatreService;
 import fontys.sem3.school.domain.Image;
 import fontys.sem3.school.domain.Theatre;
+import jakarta.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -64,7 +65,6 @@ public class TheatreService implements ITheatreService {
         List<Theatre> theatres;
         theatres = theatreRepository.filterTheatres(name, city, country);
         return new GetTheatreResponse(theatres);
-
     }
 
 

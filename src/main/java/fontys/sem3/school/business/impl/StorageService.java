@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 @Service
-public class StorageService {
+public class    StorageService {
 
     private final ImageStorageProperties imageStorageProperties;
     @Autowired

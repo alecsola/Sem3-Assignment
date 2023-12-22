@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Zone {
     private Long Id;
-    private Long TheatreId;
-    private Long EventId;
     private int Price;
     private int AvailableSeats;
 }

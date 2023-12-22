@@ -1,7 +1,6 @@
 package fontys.sem3.school.business.impl;
 
 import fontys.sem3.school.business.Request.Theatre.TheatreRequest;
-import fontys.sem3.school.business.impl.Customer.TheatreService;
 import fontys.sem3.school.business.servicesInterfaces.ITheatreService;
 import fontys.sem3.school.domain.Theatre;
 import fontys.sem3.school.persistence.repository.TheatreRepository;

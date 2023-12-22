@@ -32,9 +32,10 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(registry ->
                         registry.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/user", "/tokens/login").permitAll()
+                                .requestMatchers("ws/**").permitAll()
                                 .anyRequest().authenticated()
                 )
-                .exceptionHandling(configure -> configure.authenticationEntryPoint(authenticationEntryPoint))
+      //          .exceptionHandling(configure -> configure.authenticationEntryPoint(authenticationEntryPoint))
                 .addFilterBefore(authenticationRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
