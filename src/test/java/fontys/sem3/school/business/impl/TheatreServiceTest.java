@@ -1,8 +1,13 @@
 package fontys.sem3.school.business.impl;
 
 import fontys.sem3.school.business.Request.Theatre.TheatreRequest;
+import fontys.sem3.school.business.Request.Theatre.UpdateTheatreRequest;
+import fontys.sem3.school.business.Response.UpdateEventResponse;
+import fontys.sem3.school.business.servicesInterfaces.IEventService;
 import fontys.sem3.school.business.servicesInterfaces.ITheatreService;
+import fontys.sem3.school.domain.Event;
 import fontys.sem3.school.domain.Theatre;
+import fontys.sem3.school.persistence.repository.EventRepository;
 import fontys.sem3.school.persistence.repository.TheatreRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 
 public class TheatreServiceTest {
@@ -51,6 +58,7 @@ public class TheatreServiceTest {
         StorageService storage = mock(StorageService.class);
         List<MultipartFile>images = createSampleMultipartFile();
 
+
         TheatreRequest request = new TheatreRequest("Name", images, "C1","C1","D1",1,2);
         Mockito.when(theatreRepository.createTheatre(Mockito.any(Theatre.class))).thenReturn(1L);
         ITheatreService sut = new TheatreService(theatreRepository, storage);
@@ -81,6 +89,20 @@ public class TheatreServiceTest {
         // Assert
         assertEquals(1L, result);
         Mockito.verify(storage, Mockito.times(1)).store(Mockito.any(MultipartFile.class), Mockito.eq(1L));
+    }
+    @Test
+    public void testGetEventById() {
+        TheatreRepository repository = mock(TheatreRepository.class);
+        StorageService storage = mock(StorageService.class);
+        long id = 1L;
+        Theatre theatre = new Theatre();
+        when(repository.getTheatrebyId(id)).thenReturn(theatre);
+        ITheatreService sut = new TheatreService(repository, storage);
+
+        Theatre theatre1 = sut.getTheatrebyId(id);
+
+        verify(repository, times(1)).getTheatrebyId(id);
+        assertNotNull(theatre1);
     }
 
 

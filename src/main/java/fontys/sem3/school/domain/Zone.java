@@ -11,7 +11,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Zone {
-    private Long Id;
-    private int Price;
-    private int AvailableSeats;
+    private Long id;
+    private int price;
+    private int availableSeats;
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"id\":" + id +
+                ", \"price\":" + price +
+                ", \"availableSeats\":" + availableSeats +
+                '}';
+    }
 }

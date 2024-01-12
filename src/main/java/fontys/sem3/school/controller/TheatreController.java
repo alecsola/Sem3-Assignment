@@ -40,11 +40,20 @@ public class TheatreController {
 //        return theatreServiceADMIN.createTheatre(request);
 //    }
     @GetMapping("/filter")
+
     public GetTheatreResponse filterTheatres(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String city,
             @RequestParam(required = false) String country) {
         return this.theatreService.filterTheatres(name, city, country);
+    }
+    @GetMapping("findAll")
+    public GetTheatreResponse findAll(){
+        return this.theatreService.findAll();
+    }
+    @GetMapping("getId/{id}")
+    public Theatre getTheatrebyId(@PathVariable long id){
+        return this.theatreService.getTheatrebyId(id);
     }
 
 

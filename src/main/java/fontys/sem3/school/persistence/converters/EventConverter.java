@@ -25,7 +25,7 @@ public class EventConverter {
                 .date(event.getDate())
                 .time(event.getTime())
                 .zone(ZoneConverter.mapToJpaZones(event.getZones()))
-                .Completed(event.getCompleted())
+                .completed(event.getCompleted())
                 .image(ImageConverter.mapToJpaFiles(event.getImage()))
                 .build();
     }
@@ -45,6 +45,19 @@ public class EventConverter {
                 .Completed(eventJPAmapper.getCompleted())
                 .image(ImageConverter.mapToFiles(eventJPAmapper.getImage()))
                 .build();
+    }
+    public static List<Event> convertEventList (List<EventJPAmapper> eventJPAmappers) {
+        List<Event> events = new ArrayList<>();
+        for (EventJPAmapper eventJPAmapper : eventJPAmappers) {
+            Event event;
+
+            event = new Event(eventJPAmapper.getId(), eventJPAmapper.getName(),eventJPAmapper.getTheatreId(),  eventJPAmapper.getDate(),  eventJPAmapper.getTime(), ZoneConverter.mapToZones(eventJPAmapper.getZone()),ImageConverter.mapToFiles(eventJPAmapper.getImage()),eventJPAmapper.getCompleted() );
+            events.add(event);
+
+
+
+        }
+        return events;
     }
 
 

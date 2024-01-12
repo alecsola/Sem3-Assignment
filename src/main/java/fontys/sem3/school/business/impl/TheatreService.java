@@ -66,6 +66,14 @@ public class TheatreService implements ITheatreService {
         theatres = theatreRepository.filterTheatres(name, city, country);
         return new GetTheatreResponse(theatres);
     }
+    public GetTheatreResponse findAll(){
+        List<Theatre> theatres;
+        theatres = theatreRepository.findAll();
+        return new GetTheatreResponse(theatres);
+    }
+    public Theatre getTheatrebyId(long id){
+        return theatreRepository.getTheatrebyId(id);
+    }
 
 
 

@@ -42,9 +42,9 @@ public class ZoneConverter {
 
     private static Zone createZone(Long id, int price, int availableSeats) {
         return Zone.builder()
-                .Id(id)
-                .Price(price)
-                .AvailableSeats(availableSeats)
+                .id(id)
+                .price(price)
+                .availableSeats(availableSeats)
                 .build();
     }
 

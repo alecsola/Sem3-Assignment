@@ -30,6 +30,23 @@ public class UserConverter {
         return newUser;
 
     }
+    public static UserJPAmapper userConverterAdmin(User user){
+
+        UserJPAmapper newUser = UserJPAmapper.builder()
+                .name(user.getName())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .password(user.getPassword())
+                .build();
+        newUser.setRoles(Set.of(
+                RoleJPAmapper.builder()
+                        .user(newUser)
+                        .type(RolesEnum.ADMIN)
+                        .build()));
+
+        return newUser;
+
+    }
     public static User userJPAmapperConverter(UserJPAmapper userJPAmapper) {
         User newUser = new User();
         newUser.setId(userJPAmapper.getId());

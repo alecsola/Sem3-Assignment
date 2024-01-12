@@ -9,5 +9,6 @@ import java.util.List;
 public interface IUserService {
     Long saveNewUser(CreateUserRequest request);
     GetUserResponse getUser (long id);
+    Long saveNewAdmin(CreateUserRequest request);
 
 }

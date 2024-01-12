@@ -33,6 +33,17 @@ public class UserRepository implements IUserRepositoryBusiness {
 
     }
     @Transactional
+    public Long saveNewAdmin(User user) {
+        if (user.getPassword().length() < 4) {
+            throw new IllegalArgumentException("Password is too short");
+        }
+        UserJPAmapper userJPAmapper = UserConverter.userConverterAdmin(user);
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        userJPAmapper.setPassword(encodedPassword);
+        return userRepository.save(userJPAmapper).getId();
+
+    }
+    @Transactional
     public User findUserbyUsername(String username){
         UserJPAmapper userJPA = userRepository.findByUsername(username);
         User user = UserConverter.userJPAmapperConverter(userJPA);
@@ -49,6 +60,22 @@ public class UserRepository implements IUserRepositoryBusiness {
 
         return null;
     }
+
+    public User updateUser(User user){
+        UserJPAmapper userJPAmapper = userRepository.findById(user.getId());
+        if (userJPAmapper !=null){
+            userJPAmapper.setName(user.getName());
+            userJPAmapper.setUsername(user.getUsername());
+            userJPAmapper.setPassword(user.getPassword());
+            userJPAmapper.setEmail(user.getEmail());
+            userRepository.save(userJPAmapper);
+            return UserConverter.userJPAmapperConverter(userJPAmapper);
+
+        }
+        return null;
+    }
+
+
     public User findUserbyUsernameWithRoles(String username){
         UserJPAmapper userJPA = userRepository.findUserbyUsernameWithRoles(username);
         User user = UserConverter.userJPAmapperConverter(userJPA);

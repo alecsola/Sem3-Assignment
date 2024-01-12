@@ -24,6 +24,17 @@ public class TheatreConverter {
                 .Capacity(theatre.getCapacity())
                 .build();
     }
+    public static Theatre convertTheatreObject (TheatreJPAmapper theatreJPAmapper){
+        return Theatre.builder()
+                .Name(theatreJPAmapper.getName())
+                .Details(theatreJPAmapper.getDetails())
+                .Country(theatreJPAmapper.getCountry())
+                .City(theatreJPAmapper.getCity())
+                .Image(ImageConverter.mapToFiles(theatreJPAmapper.getImage()))
+                .Popularity(theatreJPAmapper.getPopularity())
+                .Capacity(theatreJPAmapper.getCapacity())
+                .build();
+    }
     public static List<Theatre> convertTheatre (List<TheatreJPAmapper> theatreJPAmappers) {
         List<Theatre> theatres = new ArrayList<>();
         for (TheatreJPAmapper theatreJPAmapper : theatreJPAmappers) {

@@ -18,9 +18,9 @@ import java.util.List;
 public class Event {
     private Long Id;
     private String Name;
-    private long theatreId;
+    private Long theatreId;
     private Date date;
-    private Time time;
+    private String time;
     private List<Zone> zones;
     private List<Image> image;
     private int Completed;

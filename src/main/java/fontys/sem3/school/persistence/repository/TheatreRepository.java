@@ -2,9 +2,12 @@ package fontys.sem3.school.persistence.repository;
 
 
 import fontys.sem3.school.business.interfaces.ITheatreRepositoryBusiness;
+import fontys.sem3.school.domain.Event;
 import fontys.sem3.school.domain.Theatre;
 import fontys.sem3.school.persistence.ITheatreRepository;
+import fontys.sem3.school.persistence.JPAmappers.EventJPAmapper;
 import fontys.sem3.school.persistence.JPAmappers.TheatreJPAmapper;
+import fontys.sem3.school.persistence.converters.EventConverter;
 import fontys.sem3.school.persistence.converters.TheatreConverter;
 import lombok.RequiredArgsConstructor;
 
@@ -39,6 +42,20 @@ public class TheatreRepository implements ITheatreRepositoryBusiness {
     public List<Theatre> filterTheatres(String name, String city, String country) {
         List<TheatreJPAmapper> theatreJPAmappers = repository.findTheatresByFilter(name,city,country);
         return TheatreConverter.convertTheatre(theatreJPAmappers);
+    }
+    @Transactional
+    public List<Theatre> findAll(){
+        List<TheatreJPAmapper> theatreJPAmappers = repository.findAll();
+        return TheatreConverter.convertTheatre(theatreJPAmappers);
+    }
+    @Transactional
+    public Theatre getTheatrebyId(long id){
+        List<TheatreJPAmapper> theatreJPAmappers = repository.findAll();
+        for(TheatreJPAmapper theatreJPAmapper:theatreJPAmappers){
+            if(theatreJPAmapper.getId().equals(id)){
+                return TheatreConverter.convertTheatreObject(theatreJPAmapper);
+            }
+        }return null;
     }
 
 

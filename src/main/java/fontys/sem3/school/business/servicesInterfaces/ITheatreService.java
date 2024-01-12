@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface ITheatreService {
     long createTheatre(TheatreRequest theatre);
     GetTheatreResponse filterTheatres(String name, String city, String country);
-
+    GetTheatreResponse findAll();
+    Theatre getTheatrebyId(long id);
 }

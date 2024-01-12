@@ -27,9 +27,13 @@ public class UserController  {
     public long createUser(@RequestBody @Valid CreateUserRequest userRequest){
         return userService.saveNewUser(userRequest);
     }
-    @GetMapping("/get")
-    public GetUserResponse getUser(@RequestParam Long id){
-        return userService.getUser(id);
+    @GetMapping("/get/{userId}")
+    public GetUserResponse getUser(@PathVariable Long userId){
+        return userService.getUser(userId);
+    }
+    @PostMapping("admin")
+    public Long saveNewAdmin(@RequestBody @Valid CreateUserRequest request){
+        return userService.saveNewAdmin(request);
     }
 
 

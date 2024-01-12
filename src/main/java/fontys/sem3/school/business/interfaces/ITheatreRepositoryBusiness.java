@@ -9,5 +9,7 @@ public interface ITheatreRepositoryBusiness {
 
     long createTheatre(Theatre theatre);
     List<Theatre> filterTheatres(String name, String city, String country);
+    List<Theatre> findAll();
+    Theatre getTheatrebyId(long id);
 
 }

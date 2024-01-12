@@ -47,6 +47,27 @@ public class UserServiceTest {
 
     }
 
+    @Test
+    public void saveNewAdmin() throws Exception {
+        // Arrange
+        IUserRepositoryBusiness repository = mock(IUserRepositoryBusiness.class);
+        UserRepository userRepository = mock(UserRepository.class);
+        PasswordEncoder passwordEncoder = mock(PasswordEncoder.class);
+
+        UserService userService = new UserService(repository);
+        CreateUserRequest createUserRequest = new CreateUserRequest("Alec", "TestTest", "Test@gmail.com", "123456");
+        Mockito.when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
+        Mockito.when(userRepository.saveNewAdmin(Mockito.any(User.class))).thenReturn(1L);
+        Mockito.when(repository.saveNewAdmin(Mockito.any(User.class))).thenReturn(1L);
+
+        // Act
+        Long result = userService.saveNewAdmin(createUserRequest);
+
+        // Assert
+        assertEquals(1L, result);
+
+    }
+
 
 
 

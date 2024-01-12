@@ -1,6 +1,7 @@
 package fontys.sem3.school.business.Converter;
 
 import fontys.sem3.school.business.Request.User.CreateUserRequest;
+import fontys.sem3.school.business.Request.User.UpdateUserRequest;
 import fontys.sem3.school.business.Response.User.CreateUserResponse;
 import fontys.sem3.school.business.Response.User.GetUserResponse;
 import fontys.sem3.school.domain.User;
@@ -25,10 +26,15 @@ public class Converter {
         return userResponse;
 
     }
-    public CreateUserResponse responseConverter(User user){
+    public static CreateUserResponse responseConverter(User user){
         CreateUserResponse response = new CreateUserResponse();
         response.setId(user.getId());
         return response;
     }
+    public static UpdateUserRequest updateUserRequestConv(User user){
+        User newUser = new User(user.getId(), user.getName(), user.getUsername(), user.getEmail(), user.getPassword(), user.getRoles());
+        return new UpdateUserRequest(newUser);
+    }
+
 
 }

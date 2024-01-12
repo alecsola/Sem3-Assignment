@@ -47,4 +47,25 @@ public class    StorageService {
             throw new RuntimeException("Failed to store file " + file.getOriginalFilename(), e);
         }
     }
+    public void storeEvent(MultipartFile file, Long eventId) {
+        try {
+            if (file.isEmpty()) {
+                throw new RuntimeException("Failed to store empty file " + file.getOriginalFilename());
+            }
+
+            String baseDir = imageStorageProperties.getUploadDir();
+            System.out.println("Base Directory: " + baseDir);  // Add this line
+
+            Path productFolder = Paths.get(baseDir, "EventNumber_" + eventId);
+            System.out.println("Product Folder: " + productFolder);  // Add this line
+
+            if (!Files.exists(productFolder)) {
+                Files.createDirectories(productFolder);
+            }
+
+            Files.copy(file.getInputStream(), productFolder.resolve(Objects.requireNonNull(file.getOriginalFilename())));
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to store file " + file.getOriginalFilename(), e);
+        }
+    }
 }
