@@ -127,6 +127,25 @@ public class UserServiceTest {
         assertEquals("Password is too short", exception.getMessage());
 
     }
+    @Test
+    public void saveNewAdmin_shouldThrowExceptionWhenCreating() throws Exception {
+        // Arrange
+        IUserRepositoryBusiness repository = mock(IUserRepositoryBusiness.class);
+        UserRepository userRepository = mock(UserRepository.class);
+        PasswordEncoder passwordEncoder = mock(PasswordEncoder.class);
+
+        UserService userService = new UserService(repository);
+        CreateUserRequest createUserRequest = new CreateUserRequest("Alec", "TestTest", "Test@gmail.com", "123");
+
+        // Simulate an exception being thrown when saveNewAdmin is called
+        doThrow(new RuntimeException("Simulated exception")).when(userRepository).saveNewAdmin(any(User.class));
+
+        // Act and Assert
+        assertThrows(IllegalArgumentException.class, () -> {
+            userService.saveNewAdmin(createUserRequest);
+        });
+    }
+
 
 
 
