@@ -1,0 +1,101 @@
+    .search-bar-container {
+    
+    }
+    .search-bar-container input {
+        margin-top:100px;
+        width:150px;
+        color:black;
+        background-color: white;
+        z-index: 1;
+        height:30px;
+
+    }
+    .search-bar-container button {
+        background-color: #3498db;
+
+    }
+    .search-bar-container button:hover{
+        background-color: #3498db;
+
+    }
+    .display-event-container{
+        width: 100%;
+        margin-top:20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }   
+    .display-event-item-container{
+        position: relative;
+        margin: 24px;
+        width: 320px;
+        height: 570px;
+        overflow: hidden;
+        background-color: #fff;
+        box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+    }
+    .display-event-image-container,
+    .display-event-body-container{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .display-event-image-container img {
+        margin-top:5px;
+        width: 100%;
+
+    }
+    .display-event-body-container {
+        position: relative;
+    }
+    .overlay {
+        position: relative;
+        width: 100%;
+        height: 400px;
+
+        opacity: 0;
+        transition: height linear 0.4s, opacity linear 0.2s;
+    }
+    .display-event-item-container:hover .overlay {
+        opacity: 1;
+        height: 230px;
+    }
+    .display-event-info {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+    }
+    .separator {
+        width: 20%;
+        height: 6px;
+        background-color: #17537a;
+        margin-bottom: 16px;
+    }
+    .action {
+        color: white;
+        border: 3px solid #fff;
+        background-color: #3498db;
+        position: absolute;
+    margin-top:40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        outline: none;
+        cursor: pointer;
+        padding: 12px;
+        text-transform: uppercase;
+        font-size: 1.3em;
+        font-weight: bold;
+        letter-spacing: 2px;
+        transition: background-color 0.4s, top 0.4s;
+    }
+    .action:hover {
+       background-color: #3498db;
+    }

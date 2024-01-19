@@ -1,0 +1,48 @@
+input[type="text"] {
+   width: 30%;
+ }
+ 
+ .input-container {
+   display: flex;
+   justify-content: center; /* Center the input horizontally */
+   align-items: flex-start;
+   margin-top: 80px;
+   margin-left:500px;
+ }
+ 
+ .theatre-card {
+   width: 250px; /* Adjusted card width */
+   margin: 20px;
+   padding: 15px;
+   margin-left:-500px;
+   margin-top:100px;
+   border: 1px solid #ddd;
+   border-radius: 8px;
+   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+   background-color: grey;
+ }
+ 
+ .theatre-name {
+   color: #333;
+ }
+ 
+ .theatre-image img {
+   max-width: 100%;
+   height: auto;
+   margin-bottom: 10px;
+ }
+ 
+ .theatre-location {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 10px;
+ }
+ 
+ .buy-tickets {
+   background-color: black;
+   color: #fff;
+   padding: 8px 12px;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+ }

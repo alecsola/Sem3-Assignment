@@ -1,0 +1,83 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding-top: 60px;
+  }
+  
+  .welcome-header {
+    position: fixed; /* or 'absolute' if you want it to be positioned relative to a positioned ancestor */
+    margin-top:-500px; /* Adjust this value as needed */
+  left: 20px;
+    
+  }
+  
+  .destination-input-container {
+    margin-left:600px; 
+    margin-top:50px;
+    width:150px;
+    margin-bottom:10px;
+    
+  }
+  
+  .message-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:800px;
+    margin-left:-300px;
+  }
+  
+  .messages-container {
+    width: 40%;
+    max-height: 50vh;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top:300px;
+    margin-top:40px;
+    margin-right:-600px;
+    
+    
+  }
+  
+  .input-field-chat {
+    
+    padding: 10px;
+    margin: 5px 0;
+    width: 300px; /* You can adjust the width as needed */
+  }
+  .input-field-chat-destination {
+    background-color: white;;
+    color:black;
+    height:30px;
+    width:0px;
+    margin-bottom:40px;
+    margin-top:-50px;
+  }
+  .input-field-chat-message {
+    background-color: white;;
+    color:black;
+    height:30px;
+  }
+  .chat-destination{
+    margin-bottom:100px;
+    margin-top:-80px;
+    margin-right:50px;
+    margin-left:50px;
+    
+  }
+  
+  .send-button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: blue;
+  }
+  .send-button:hover {
+ 
+    background-color: blue;
+  }

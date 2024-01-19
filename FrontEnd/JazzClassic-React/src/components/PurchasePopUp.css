@@ -1,0 +1,22 @@
+.purchase-modal {
+    background-color: #e0f2f1;
+    margin-top:-380px;
+    z-index:3;
+    position:absolute;
+    margin-left:520px;
+    min-height:400px;
+    min-width: 500px;
+    border-radius: 15px; 
+    /* Other styles for purchase-modal */
+  }
+  .buttonPopUp{
+    margin-top:50px;
+    margin-bottom:10px;
+  }
+  .buttonPopUp button{
+    background-color:#3498db;
+  }
+  .buttonCancelPopUp button{
+    background-color:#3498db;
+  } 
+

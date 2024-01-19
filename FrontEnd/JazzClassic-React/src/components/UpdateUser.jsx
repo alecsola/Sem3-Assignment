@@ -1,48 +1,40 @@
 import React, { useState, useEffect } from 'react';
+import userService from "../services/UserService.js";
 
 const UpdateUserComponent = ({ userId }) => {
   const [updatedUserData, setUpdatedUserData] = useState({
-    Name: '',
-    Username: '',
-    Email: '',
-    Password: '',
+    userId: '',
+    name: '',
+    username: '',
+    email: '',
+    hashedPassword: '',
   });
   const [isEditing, setEditing] = useState(false);
+
   useEffect(() => {
-  if (userId) {
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch(`http://localhost:8080/user/getUserbyId?id=${userId}`);
-        const data = await response.json();
-        setUpdatedUserData(data);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
+    if (userId) {
+      const fetchUserData = async () => {
+        try {
+          const data = await userService.getUser(userId);
+          setUpdatedUserData(data);
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      };
 
-    fetchUserData();
-  }
-}, [userId]);
+      fetchUserData();
+    }
+  }, [userId]);
+
   const handleUpdateUser = async () => {
-    // Implement logic to update user data
     try {
-      const updateResponse = await fetch('http://localhost:8080/user/updateUser', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userId: userId,
-          ...updatedUserData, 
-         
-        }),
+      await userService.updateUser({
+        id: updatedUserData.userId,
+        name: updatedUserData.name,
+        username: updatedUserData.username,
+        email: updatedUserData.email,
+        password: updatedUserData.hashedPassword,
       });
-
-      if (updateResponse.ok) {
-        console.log('User updated successfully');
-      } else {
-        console.error('User update failed:', updateResponse.statusText);
-      }
     } catch (error) {
       console.error('Error during user update:', error);
     }
@@ -55,25 +47,24 @@ const UpdateUserComponent = ({ userId }) => {
         // Display input fields when editing
         <div>
           <label>Name: </label>
-          <input type="text" value={updatedUserData.Name} onChange={(e) => setUpdatedUserData({ ...userData, Name: e.target.value })} />
+          <input type="text" value={updatedUserData.name} onChange={(e) => setUpdatedUserData({ ...updatedUserData, name: e.target.value })} />
           <br />
           <label>Username: </label>
-          <input type="text" value={updatedUserData.Username} onChange={(e) => setUpdatedUserData({ ...userData, Username: e.target.value })} />
+          <input type="text" value={updatedUserData.username} onChange={(e) => setUpdatedUserData({ ...updatedUserData, username: e.target.value })} />
           <br />
           <label>Email: </label>
-          <input type="text" value={updatedUserData.Email} onChange={(e) => setUpdatedUserData({ ...userData, Email: e.target.value })} />
+          <input type="text" value={updatedUserData.email} onChange={(e) => setUpdatedUserData({ ...updatedUserData, email: e.target.value })} />
           <br />
-          <label>Password: </label>
-          <input type="text" value={updatedUserData.Password} onChange={(e) => setUserData({ ...userData, Password: e.target.value })} />
-          <br />
+         
+         
         </div>
       ) : (
         // Display user data as text when not editing
         <div>
-          <p>Name: {updatedUserData.Name}</p>
-          <p>Username: {updatedUserData.Username}</p>
-          <p>Email: {updatedUserData.Email}</p>
-          <p>Password: {updatedUserData.Password}</p>
+          <p>Name: {updatedUserData.name}</p>
+          <p>Username: {updatedUserData.username}</p>
+          <p>Email: {updatedUserData.email}</p>
+       
         </div>
       )}
       <br />

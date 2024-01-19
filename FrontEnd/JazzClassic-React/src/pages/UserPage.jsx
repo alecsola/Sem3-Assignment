@@ -1,20 +1,13 @@
 import React, { useState } from 'react';
-import { GetUserComponent } from '../components/GetUsers';
-import { CreateUserComponent } from '../components/CreateUser';
+import SignUpComponent from '../components/SignUp';
 
 const UserPage = () => {
-  const [userCreated, setUserCreated] = useState();
-
-  const handleUserCreated = () => {
-    setUserCreated(true);     
   
-  };
-
   return (
     <div>
       <h1>User Page</h1>
-      <CreateUserComponent onUserCreated={handleUserCreated}/>
-      <GetUserComponent userCreated={userCreated}/>
+
+  
     </div>
   );
 };
