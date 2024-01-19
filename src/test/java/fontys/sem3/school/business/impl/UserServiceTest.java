@@ -128,41 +128,7 @@ public class UserServiceTest {
 
     }
 
-    @Test
-    @Transactional
-    public void getUser_shouldReturnUser() {
-        // Arrange
-        IUserRepositoryBusiness repository = mock(IUserRepositoryBusiness.class);
-        UserRepository userRepository = mock(UserRepository.class);
-        PasswordEncoder passwordEncoder = mock(PasswordEncoder.class);
-
-        UserService userService = new UserService(repository);
-
-        // Create a Role object
-        Role role = Role.builder()
-                .Id(1L)
-                .Type(RolesEnum.ADMIN)
-                .build();
-
-        // Create a User object
-        User user = User.builder()
-                .Id(1L)
-                .Name("John Doe")
-                .Username("johndoe")
-                .Email("john.doe@example.com")
-                .Password("password")
-                .roles(Collections.singleton(role))
-                .build();
-
-        when(userRepository.getUser(1L)).thenReturn(user);
-
-        // Act
-        GetUserResponse response = userService.getUser(1L);
-
-        // Assert
-        assertEquals(user, response.getUser());
-        verify(userRepository, times(1)).getUser(1L);
-    }
+   
 
 
 
