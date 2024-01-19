@@ -30,33 +30,33 @@ public class TheatreService implements ITheatreService {
      * @should creatre theatre
      * @should return an error when not creating
      */
-    public long createTheatre(TheatreRequest request) {
-        try {
-            Theatre theatre = new Theatre();
-            theatre.setName(request.getName());
-            theatre.setDetails(request.getDetails());
-            theatre.setCountry(request.getCountry());
-            theatre.setPopularity(request.getPopularity());
-            theatre.setCity(request.getCity());
+        public long createTheatre(TheatreRequest request) {
+            try {
+                Theatre theatre = new Theatre();
+                theatre.setName(request.getName());
+                theatre.setDetails(request.getDetails());
+                theatre.setCountry(request.getCountry());
+                theatre.setPopularity(request.getPopularity());
+                theatre.setCity(request.getCity());
 
-            // Convert MultipartFile to Image and set it in Theatre
-            List<Image> images = ImageConverter.convertToImageObject(request.getImage());
-            theatre.setImage(images);
+                // Convert MultipartFile to Image and set it in Theatre
+                List<Image> images = ImageConverter.convertToImageObject(request.getImage());
+                theatre.setImage(images);
 
-            long result = theatreRepository.createTheatre(theatre);
+                long result = theatreRepository.createTheatre(theatre);
 
-            if (result != 0) {
-                for (MultipartFile file : request.getImage()) {
-                    storageService.store(file, result);
+                if (result != 0) {
+                    for (MultipartFile file : request.getImage()) {
+                        storageService.store(file, result);
+                    }
                 }
+
+                return new TheatreResponse(result).getId();
+            } catch (Exception e) {
+
+                throw new IllegalArgumentException("Theatre could not be made");
             }
-
-            return new TheatreResponse(result).getId();
-        } catch (Exception e) {
-
-            throw new IllegalArgumentException("Theatre could not be made");
         }
-    }
     /**
      * @should filter theatre with name,city and country
      * @should return an empty list when nothing found

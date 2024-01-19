@@ -22,8 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 
@@ -136,6 +135,25 @@ public class TheatreServiceTest {
         assertEquals(theatres, response.getTheatres());
         verify(theatreRepository, times(1)).findAll();
     }
+    @Test
+    public void createTheatre_shouldThrowExceptionWhenCreating() throws Exception {
+        TheatreRepository theatreRepository = mock(TheatreRepository.class);
+        StorageService storage = mock(StorageService.class);
+        List<MultipartFile> images = createSampleMultipartFile();
+
+        TheatreRequest request = new TheatreRequest("Name", images, "C1","C1","D1",1,2);
+
+        // Simulate an exception being thrown when createTheatre is called
+        doThrow(new RuntimeException("Simulated exception")).when(theatreRepository).createTheatre(any(Theatre.class));
+
+        ITheatreService sut = new TheatreService(theatreRepository, storage);
+
+        // Assert that an IllegalArgumentException is thrown
+        assertThrows(IllegalArgumentException.class, () -> {
+            sut.createTheatre(request);
+        });
+    }
+
 
 
 
