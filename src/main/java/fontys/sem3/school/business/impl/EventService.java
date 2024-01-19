@@ -68,6 +68,15 @@ public class EventService implements IEventService{
         events = repository.getNotCompleted();
         return new GetEventResponse(events);
     }
+    public void deleteEvent(UpdateEventRequest request){
+        Event event = EventConverterBusiness.updateEventRequestConverter(request);
+        repository.deleteEvent(event);
+    }
+    public GetEventResponse getEventsByPopularity(){
+        List<Event> events;
+        events = repository.getEventsByPopularity();
+        return new GetEventResponse(events);
+    }
 
 
 }

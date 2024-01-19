@@ -20,6 +20,9 @@ public class TicketConverter {
                 .theatreId(ticket.getTheatreId())
                 .zoneId(ticket.getZoneId())
                 .eventId(ticket.getEventId())
+                .ticketAmount(ticket.getTicketAmount())
+                .date(ticket.getDate())
+                .time(ticket.getTime())
                 .price(ticket.getPrice())
                 .userId(ticket.getUserId())
                 .build();
@@ -46,7 +49,7 @@ public class TicketConverter {
         for (TicketJPAmapper ticketJPAmapper : ticketJPAmappers) {
             Ticket ticket;
 
-            ticket = new Ticket(ticketJPAmapper.getId(),ticketJPAmapper.getDate(), ticketJPAmapper.getTime(), ticketJPAmapper.getPrice(), ticketJPAmapper.getTheatreId(), ticketJPAmapper.getEventId(), ticketJPAmapper.getZoneId(), ticketJPAmapper.getUserId());
+            ticket = new Ticket(ticketJPAmapper.getId(),ticketJPAmapper.getDate(), ticketJPAmapper.getTime(), ticketJPAmapper.getPrice(), ticketJPAmapper.getTheatreId(), ticketJPAmapper.getEventId(), ticketJPAmapper.getZoneId(), ticketJPAmapper.getUserId(), ticketJPAmapper.getTicketAmount());
             tickets.add(ticket);
 
 

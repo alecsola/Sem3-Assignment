@@ -21,6 +21,17 @@ private String Email;
 private String Password;
 private Set<Role> roles;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + Id +
+                ", name='" + Name + '\'' +
+                ", username='" + Username + '\'' +
+                ", email='" + Email + '\'' +
+                ", password='" + Password + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 
 }
 

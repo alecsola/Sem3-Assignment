@@ -14,12 +14,15 @@ import fontys.sem3.school.persistence.JPAmappers.UserJPAmapper;
 import fontys.sem3.school.persistence.converters.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -56,6 +59,17 @@ public class EventRepository  implements IEventRepositoryBusiness{
             return EventConverter.convertToEvent(eventJPAmapper);
         }
         return null;
+    }
+    @Transactional
+    public void deleteEvent (Event newEvent){
+        Event event = getEventbyId(newEvent.getId());
+        EventJPAmapper eventJPAmapper = EventConverter.convertToJPA(event);
+        repository.delete(eventJPAmapper);
+    }
+    @Transactional
+    public List<Event> getEventsByPopularity() {
+        List<EventJPAmapper> notCompletedJPAmappers = repository.findNotCompletedEventsOrderedByTheatrePopularity();
+        return EventConverter.convertEventList(notCompletedJPAmappers);
     }
     @Transactional
     public List<Event> retrieveAllEvents(){

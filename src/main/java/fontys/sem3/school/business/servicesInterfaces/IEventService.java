@@ -17,5 +17,7 @@ public interface IEventService {
     GetEventResponse findAll();
     UpdateEventResponse getEventbyId(long id);
     GetEventResponse getNotCompleted();
+    void deleteEvent(UpdateEventRequest request);
+    GetEventResponse getEventsByPopularity();
 
 }

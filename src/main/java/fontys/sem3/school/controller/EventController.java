@@ -34,7 +34,6 @@ public class EventController {
 
 
     @PostMapping("create")
-
     public long createEvent(@RequestParam("name") String name, @RequestParam("image")List<MultipartFile>image, @RequestParam("theatreId")Long theatreId,
                             @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date, @RequestParam("time") String time, @RequestParam("zones")  String zonesJson) throws JsonProcessingException {
         List<Zone> zones = Arrays.asList(new ObjectMapper().readValue(zonesJson, Zone[].class));
@@ -68,5 +67,21 @@ public class EventController {
     @GetMapping("getNotCompleted")
     public GetEventResponse getNotCompleted(){
         return service.getNotCompleted();
+    }
+    @PostMapping("delete/{id}")
+    public void deleteEvent(@PathVariable("id") Long id, @RequestParam("name") String name,
+                            @RequestPart("image")List<MultipartFile> image,
+                            @RequestParam("theatreId") Long theatreId,
+                            @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
+                            @RequestParam("time") String time,
+                            @RequestParam("completed") int completed,
+                            @RequestParam("zones") String zonesJson)throws JsonProcessingException{
+        List<Zone> zones = Arrays.asList(new ObjectMapper().readValue(zonesJson, Zone[].class));
+        UpdateEventRequest request = new UpdateEventRequest(id, name, theatreId, date, time,completed, zones, image);
+        service.deleteEvent(request);
+    }
+    @GetMapping("getByPopularity")
+    public GetEventResponse getEventsByPopularity(){
+        return service.getEventsByPopularity();
     }
 }

@@ -26,7 +26,7 @@ public class TicketRepository implements ITicketBusinessRepository {
         ZoneJPAmapper zoneJPAmapper = zoneRepository.findById(ticketJPAmapper.getZoneId()).orElseThrow(
                 () -> new RuntimeException("Zone not found")
         );
-        zoneJPAmapper.setAvailableSeats(zoneJPAmapper.getAvailableSeats() - 1);
+        zoneJPAmapper.setAvailableSeats(zoneJPAmapper.getAvailableSeats() - ticket.getTicketAmount());
         zoneRepository.save(zoneJPAmapper);
         return repository.save(ticketJPAmapper).getId();
     }

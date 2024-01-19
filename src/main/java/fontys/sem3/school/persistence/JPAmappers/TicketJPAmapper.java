@@ -24,5 +24,6 @@ public class TicketJPAmapper {
     private Long eventId;
     private Long zoneId;
     private Long userId;
+    private int ticketAmount;
 
 }

@@ -2,6 +2,7 @@ package fontys.sem3.school.business.impl;
 
 import fontys.sem3.school.business.Request.Theatre.TheatreRequest;
 import fontys.sem3.school.business.Request.Theatre.UpdateTheatreRequest;
+import fontys.sem3.school.business.Response.Theatre.GetTheatreResponse;
 import fontys.sem3.school.business.Response.UpdateEventResponse;
 import fontys.sem3.school.business.servicesInterfaces.IEventService;
 import fontys.sem3.school.business.servicesInterfaces.ITheatreService;
@@ -28,9 +29,6 @@ import static org.mockito.Mockito.times;
 
 
 public class TheatreServiceTest {
-
-
-
 
     @Mock
     private StorageService storageService;
@@ -104,6 +102,41 @@ public class TheatreServiceTest {
         verify(repository, times(1)).getTheatrebyId(id);
         assertNotNull(theatre1);
     }
+    @Test
+    public void filterTheatres_shouldFilterTheatresCorrectly() {
+        TheatreRepository theatreRepository = mock(TheatreRepository.class);
+        StorageService storage = mock(StorageService.class);
+
+        List<Theatre> theatres = new ArrayList<>();
+        // Add some sample theatres to the list
+        // ...
+
+        when(theatreRepository.filterTheatres("name", "city", "country")).thenReturn(theatres);
+
+        ITheatreService sut = new TheatreService(theatreRepository, storage);
+
+        GetTheatreResponse response = sut.filterTheatres("name", "city", "country");
+
+        assertEquals(theatres, response.getTheatres());
+        verify(theatreRepository, times(1)).filterTheatres("name", "city", "country");
+    }
+    @Test
+    public void findAll_shouldReturnAllTheatres() {
+        TheatreRepository theatreRepository = mock(TheatreRepository.class);
+        StorageService storage = mock(StorageService.class);
+
+        List<Theatre> theatres = new ArrayList<>();
+
+        when(theatreRepository.findAll()).thenReturn(theatres);
+
+        ITheatreService sut = new TheatreService(theatreRepository, storage);
+
+        GetTheatreResponse response = sut.findAll();
+
+        assertEquals(theatres, response.getTheatres());
+        verify(theatreRepository, times(1)).findAll();
+    }
+
 
 
 }

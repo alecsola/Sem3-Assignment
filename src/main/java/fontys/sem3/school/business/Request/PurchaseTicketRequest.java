@@ -17,4 +17,5 @@ public class PurchaseTicketRequest {
     private Long eventId;
     private Long zoneId;
     private Long userId;
+    private int amountTicket;
 }

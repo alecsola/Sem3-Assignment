@@ -103,4 +103,52 @@ public class LogInServiceTest {
         // Assert
         assertNull(sutResponse.getAccessToken());
     }
+    @Test
+    @Transactional
+    public void login_shouldThrowExceptionIfUserDoesNotExist() throws Exception {
+        // Arrange
+        UserRepository repository = mock(UserRepository.class);
+        PasswordEncoder passwordEncoder = mock(PasswordEncoder.class);
+        AccessTokenEncoder accessTokenEncoder = mock(AccessTokenEncoder.class);
+
+        // Mocking a user with valid credentials
+        User user = new User();
+        user.setId(1L);
+        user.setName("Alec");
+        user.setUsername("solaalec1");
+        user.setEmail("sola.alec@gmail.com");
+        user.setPassword("123456");
+
+        // Initialize the Role object
+        Role role = new Role();
+        role.setId(1L);
+        role.setType(RolesEnum.ADMIN);
+        role.setUser(user);
+
+        // Add the Role object to the User's roles
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        user.setRoles(roles);
+
+        Mockito.when(repository.findUserbyUsername("nonExistentUser")).thenReturn(null);
+        Mockito.when(passwordEncoder.matches(anyString(), anyString())).thenReturn(true); // Ensure the passwords match
+        Mockito.when(accessTokenEncoder.encode(any(AccessTokenImpl.class))).thenReturn(null);
+
+
+        // Create the actual LogInService instance with the mocked repository
+        ILoginService sut = new LogInService(repository, passwordEncoder, accessTokenEncoder);
+
+        // Act and Assert
+        Exception exception = assertThrows(Exception.class, () -> {
+            LoginRequest request = new LoginRequest();
+            request.setUsername("nonExistentUser");
+            request.setPassword("123456");
+            sut.login(request);
+        });
+
+        // Verify the exception type
+        assertTrue(exception instanceof NullPointerException);
+    }
+
+
 }

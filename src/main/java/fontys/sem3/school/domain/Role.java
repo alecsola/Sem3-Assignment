@@ -16,5 +16,11 @@ public class Role {
     private Long Id;
     private RolesEnum Type;
     private User user;
-
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + Id +
+                ", type=" + Type +
+                '}';
+    }
 }

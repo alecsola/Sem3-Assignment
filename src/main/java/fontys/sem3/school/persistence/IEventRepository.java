@@ -19,7 +19,12 @@ public interface IEventRepository extends JpaRepository<EventJPAmapper, String> 
     List<EventJPAmapper> findEventByName(
             @Param("name") String name
     );
-    List<EventJPAmapper> findByCompleted(int Completed);
-
     List<EventJPAmapper> findByCompletedAndDateAfter(int completed, Date date);
+    @Query("SELECT e FROM EventJPAmapper e " +
+            "JOIN TheatreJPAmapper t ON e.theatreId = t.Id " +
+            "LEFT JOIN e.image i " +
+            "WHERE e.completed = 0 " +  // Include this condition for not completed events
+            "ORDER BY t.Popularity DESC")
+    List<EventJPAmapper> findNotCompletedEventsOrderedByTheatrePopularity();
+
 }

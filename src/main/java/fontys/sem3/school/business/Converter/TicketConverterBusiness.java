@@ -22,6 +22,7 @@ public class TicketConverterBusiness {
         ticket.setUserId(request.getUserId());
         ticket.setZoneId(request.getZoneId());
         ticket.setTheatreId(request.getTheatreId());
+        ticket.setTicketAmount(request.getAmountTicket());
         return ticket;
     }
 

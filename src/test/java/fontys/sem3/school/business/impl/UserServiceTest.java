@@ -1,9 +1,12 @@
 package fontys.sem3.school.business.impl;
 
 import fontys.sem3.school.business.Request.User.CreateUserRequest;
+import fontys.sem3.school.business.Response.User.GetUserResponse;
 import fontys.sem3.school.business.interfaces.User.IUserRepositoryBusiness;
+import fontys.sem3.school.domain.Role;
 import fontys.sem3.school.domain.User;
 import fontys.sem3.school.persistence.AccessTokenEncoder;
+import fontys.sem3.school.persistence.JPAmappers.RolesEnum;
 import fontys.sem3.school.persistence.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,10 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import java.util.Collections;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.*;
 
 public class UserServiceTest {
     /**
@@ -35,9 +39,9 @@ public class UserServiceTest {
 
         UserService userService = new UserService(repository);
         CreateUserRequest createUserRequest = new CreateUserRequest("Alec", "TestTest", "Test@gmail.com", "123456");
-        Mockito.when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
-        Mockito.when(userRepository.saveNewUser(Mockito.any(User.class))).thenReturn(1L);
-        Mockito.when(repository.saveNewUser(Mockito.any(User.class))).thenReturn(1L);
+        when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
+        when(userRepository.saveNewUser(Mockito.any(User.class))).thenReturn(1L);
+        when(repository.saveNewUser(Mockito.any(User.class))).thenReturn(1L);
 
         // Act
         Long result = userService.saveNewUser(createUserRequest);
@@ -56,15 +60,39 @@ public class UserServiceTest {
 
         UserService userService = new UserService(repository);
         CreateUserRequest createUserRequest = new CreateUserRequest("Alec", "TestTest", "Test@gmail.com", "123456");
-        Mockito.when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
-        Mockito.when(userRepository.saveNewAdmin(Mockito.any(User.class))).thenReturn(1L);
-        Mockito.when(repository.saveNewAdmin(Mockito.any(User.class))).thenReturn(1L);
+        when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
+        when(userRepository.saveNewAdmin(Mockito.any(User.class))).thenReturn(1L);
+        when(repository.saveNewAdmin(Mockito.any(User.class))).thenReturn(1L);
 
         // Act
         Long result = userService.saveNewAdmin(createUserRequest);
 
         // Assert
         assertEquals(1L, result);
+
+    }
+    @Test
+    @Transactional
+    public void saveNewAdmin_shouldReturnAnErrorWhenItCantBeCreated() throws Exception {
+        // Arrange
+        IUserRepositoryBusiness repository = mock(IUserRepositoryBusiness.class);
+        UserRepository userRepository = mock(UserRepository.class);
+        PasswordEncoder passwordEncoder = mock(PasswordEncoder.class);
+
+        UserService userService = new UserService(repository);
+        CreateUserRequest createUserRequest = new CreateUserRequest("Alec", "TestTest", "Test@gmail.com", "123");
+        when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
+        when(userRepository.saveNewUser(Mockito.any(User.class))).thenReturn(1L);
+        when(repository.saveNewUser(Mockito.any(User.class))).thenReturn(1L);
+
+
+        // Act and Assert
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            userService.saveNewAdmin(createUserRequest);
+        });
+
+        // Verify the exception message
+        assertEquals("Password is too short", exception.getMessage());
 
     }
 
@@ -85,9 +113,9 @@ public class UserServiceTest {
 
         UserService userService = new UserService(repository);
         CreateUserRequest createUserRequest = new CreateUserRequest("Alec", "TestTest", "Test@gmail.com", "123");
-        Mockito.when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
-        Mockito.when(userRepository.saveNewUser(Mockito.any(User.class))).thenReturn(1L);
-        Mockito.when(repository.saveNewUser(Mockito.any(User.class))).thenReturn(1L);
+        when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
+        when(userRepository.saveNewUser(Mockito.any(User.class))).thenReturn(1L);
+        when(repository.saveNewUser(Mockito.any(User.class))).thenReturn(1L);
 
 
         // Act and Assert
@@ -99,6 +127,43 @@ public class UserServiceTest {
         assertEquals("Password is too short", exception.getMessage());
 
     }
+
+    @Test
+    @Transactional
+    public void getUser_shouldReturnUser() {
+        // Arrange
+        IUserRepositoryBusiness repository = mock(IUserRepositoryBusiness.class);
+        UserRepository userRepository = mock(UserRepository.class);
+        PasswordEncoder passwordEncoder = mock(PasswordEncoder.class);
+
+        UserService userService = new UserService(repository);
+
+        // Create a Role object
+        Role role = Role.builder()
+                .Id(1L)
+                .Type(RolesEnum.ADMIN)
+                .build();
+
+        // Create a User object
+        User user = User.builder()
+                .Id(1L)
+                .Name("John Doe")
+                .Username("johndoe")
+                .Email("john.doe@example.com")
+                .Password("password")
+                .roles(Collections.singleton(role))
+                .build();
+
+        when(userRepository.getUser(1L)).thenReturn(user);
+
+        // Act
+        GetUserResponse response = userService.getUser(1L);
+
+        // Assert
+        assertEquals(user, response.getUser());
+        verify(userRepository, times(1)).getUser(1L);
+    }
+
 
 
 }

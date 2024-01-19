@@ -16,4 +16,6 @@ public interface IEventRepositoryBusiness {
     List <Event> findAll();
     Event getEventbyId(long id);
     List<Event>filterEvent(String name);
+    void deleteEvent (Event newEvent);
+    List<Event> getEventsByPopularity();
 }
