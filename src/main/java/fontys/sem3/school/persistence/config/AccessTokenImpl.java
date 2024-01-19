@@ -22,6 +22,7 @@ public class AccessTokenImpl implements AccessToken {
     }
 
 
+
     public boolean hasRole(String roleName) {
         return this.roles.contains(roleName);
     }

@@ -157,4 +157,51 @@ public class EventServiceTest {
         verify(repository, times(1)).getNotCompleted();
         assertEquals(1, response.getEvent().size());
     }
+    @Test
+    public void testDeleteEvent() {
+        // Arrange
+        EventRepository repository = mock(EventRepository.class);
+        StorageService storage = mock(StorageService.class);
+        Zone zone1 = Zone.builder().id(1L).price(100).availableSeats(50).build();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = null;
+        try {
+            date = sdf.parse("2024/04/06");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        List<Zone> zones = Arrays.asList(zone1);
+        List<MultipartFile> images = createSampleMultipartFile();
+        UpdateEventRequest request = new UpdateEventRequest(26L,"T1",8L,date,"15:05",1,zones,images); // Set necessary values
+        Event event = EventConverterBusiness.updateEventRequestConverter(request);
+
+        // Act
+        doNothing().when(repository).deleteEvent(event); // Corrected line
+        IEventService sut = new EventService(repository, storage);
+
+        sut.deleteEvent(request);
+
+        // Assert
+        verify(repository, times(1)).deleteEvent(event);
+    }
+
+
+
+    @Test
+    public void testGetEventsByPopularity() {
+        // Arrange
+        EventRepository repository = mock(EventRepository.class);
+        StorageService storage = mock(StorageService.class);
+        List<Event> events = Collections.singletonList(new Event());
+        when(repository.getEventsByPopularity()).thenReturn(events);
+
+        IEventService sut = new EventService(repository, storage);
+        GetEventResponse response = sut.getEventsByPopularity();
+
+        verify(repository, times(1)).getEventsByPopularity();
+        assertEquals(1, response.getEvent().size());
+
+    }
+
 }
