@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  backend:
+    build: ../JazzClassicsSem3Assignment
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/jazzclassicsdb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Al3cS0la
+
+
+    depends_on:
+      - db
+    networks:
+      - app-network
+    volumes:
+      - ./JazzClassicsSem3Assignment/uploads:/uploads
+
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: Al3cS0la
+      MYSQL_PASSWORD: Al3cS0la
+      MYSQL_DATABASE: jazzclassicsdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqldata:/var/lib/mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysqldata:
