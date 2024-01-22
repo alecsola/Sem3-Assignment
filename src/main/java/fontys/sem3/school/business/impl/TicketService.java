@@ -1,9 +1,10 @@
-package fontys.sem3.school.business.interfaces;
+package fontys.sem3.school.business.impl;
 
 import fontys.sem3.school.business.Converter.TicketConverterBusiness;
 import fontys.sem3.school.business.Request.PurchaseTicketRequest;
 import fontys.sem3.school.business.Response.PurchaseTicketResponse;
 import fontys.sem3.school.business.Response.User.GetUserResponse;
+import fontys.sem3.school.business.interfaces.IEmailService;
 import fontys.sem3.school.business.interfaces.ITicketBusinessRepository;
 import fontys.sem3.school.business.interfaces.User.IUserService;
 import fontys.sem3.school.business.servicesInterfaces.ITicketService;

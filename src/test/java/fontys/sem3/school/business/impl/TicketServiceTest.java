@@ -5,16 +5,11 @@ import fontys.sem3.school.business.Request.PurchaseTicketRequest;
 import fontys.sem3.school.business.Response.User.GetUserResponse;
 import fontys.sem3.school.business.interfaces.IEmailService;
 import fontys.sem3.school.business.interfaces.ITicketBusinessRepository;
-import fontys.sem3.school.business.interfaces.TicketService;
 import fontys.sem3.school.business.interfaces.User.IUserService;
-import fontys.sem3.school.business.servicesInterfaces.ITheatreService;
-import fontys.sem3.school.business.servicesInterfaces.ITicketService;
 import fontys.sem3.school.domain.Role;
 import fontys.sem3.school.domain.Ticket;
 import fontys.sem3.school.domain.User;
 import fontys.sem3.school.persistence.JPAmappers.RolesEnum;
-import fontys.sem3.school.persistence.config.AccessTokenEncoderDecoder;
-import fontys.sem3.school.persistence.repository.TicketRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
