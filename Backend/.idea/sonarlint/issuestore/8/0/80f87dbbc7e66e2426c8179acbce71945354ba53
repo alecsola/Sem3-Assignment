@@ -1,0 +1,16 @@
+
+b	java:S116"MRename this field "Id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´ÕÛ”
+n	java:S116"TRename this field "TheatreId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úÊ˜àÿÿÿÿÿ
+c	java:S116"ORename this field "Zone" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æñ…;
+n	java:S116"YRename this field "AvailableSeats" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùüóØ
+j	java:S116"PRename this field "Price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(žôÓ»úÿÿÿÿ
+<
+java:S1068"&Remove this unused "Id" private field.(´ÕÛ”
+H
+java:S1068"-Remove this unused "TheatreId" private field.(úÊ˜àÿÿÿÿÿ
+=
+java:S1068"(Remove this unused "Zone" private field.(æñ…;
+H
+java:S1068"2Remove this unused "AvailableSeats" private field.(ùüóØ
+D
+java:S1068")Remove this unused "Price" private field.(žôÓ»úÿÿÿÿ

@@ -1,0 +1,20 @@
+
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Óãâà8ãæù«·1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Óãâà8ãæù«·1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Óãâà8ãæù«·1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Óãâà8ãæù«·1
+r	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÒªâÿÿÿÿÿ8ãæù«·1
+r	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÒªâÿÿÿÿÿ8ãæù«·1
+r	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÒªâÿÿÿÿÿ8ãæù«·1
+r	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÒªâÿÿÿÿÿ8ãæù«·1
+r	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÒªâÿÿÿÿÿ8ãæù«·1
+r	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÒªâÿÿÿÿÿ8ãæù«·1
+r	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÒªâÿÿÿÿÿ8ãæù«·1
+m	java:S117@"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Å÷Ñ¤8ãæù«·1
+j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şè¸°8òæù«·1
+j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Óãâà8òæù«·1
+o
+java:S6204""RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹8¬û«·1
+o	java:S100%"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÒªâÿÿÿÿÿ8ùæù«·1
+j	java:S1005"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üÏÎ8ùæù«·1
+j	java:S100@"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Å÷Ñ¤8ùæù«·1

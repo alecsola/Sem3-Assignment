@@ -1,0 +1,14 @@
+
+k	java:S117K"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùÖð†øÿÿÿÿ
+k	java:S117K"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùÖð†øÿÿÿÿ
+k	java:S117K"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùÖð†øÿÿÿÿ
+k	java:S117K"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùÖð†øÿÿÿÿ
+k	java:S117K"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùÖð†øÿÿÿÿ
+]
+java:S1854N"BRemove this useless assignment to local variable "hashedPassword".(÷Ì†œúÿÿÿÿ
+N
+java:S1481N"3Remove this unused "hashedPassword" local variable.(÷Ì†œúÿÿÿÿ
+g
+java:S1128"QRemove this unused import 'fontys.sem3.school.business.Response.GetUserResponse'.(åöŠ“
+H
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ
